@@ -1,0 +1,20 @@
+table{
+    width: 100%;
+}
+.layui-table-cell {
+    height: 35px;
+    line-height: 35px;
+    padding: 0 5px ;
+    position: relative;
+    box-sizing: border-box;
+    text-align: center;
+}
+.layui-table-cell input{
+    height: 28px;
+    
+}
+.layui-table-view .layui-table td, .layui-table-view .layui-table th {
+    padding: 0px 0;
+    border-top: none;
+    border-left: none;
+}
