@@ -1,7 +1,7 @@
 table{
     width: 100%;
 }
-.layui-table-cell {
+.layui-fluid .layui-table-cell {
     height: 35px;
     line-height: 35px;
     padding: 0 5px ;
@@ -9,12 +9,29 @@ table{
     box-sizing: border-box;
     text-align: center;
 }
-.layui-table-cell input{
+.layui-fluid .layui-table-cell input{
     height: 28px;
-    
+    text-align: center;
 }
-.layui-table-view .layui-table td, .layui-table-view .layui-table th {
+.layui-fluid .layui-table-view .layui-table td, .layui-table-view .layui-table th {
     padding: 0px 0;
+    border-top: none;
+    border-left: none;
+}
+
+.people-choose .layui-table-cell {
+    height: 25px;
+    line-height: 25px;
+    padding: 0 5px ;
+    position: relative;
+    box-sizing: border-box;
+    text-align: center;
+}
+.people-choose .layui-table-view {
+    margin: 0px 0px;
+}
+.people-choose .layui-table td, .layui-table th {
+    padding: 1px 0;
     border-top: none;
     border-left: none;
 }
