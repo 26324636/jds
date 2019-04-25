@@ -29,28 +29,37 @@
       <div class="layui-col-md12">
         <div class="layui-card-body">
           <table class="layui-hide" id="test-table-fixed">
+            <!-- 普通输入框模板 -->
             <script type="text/html" id="test-table-inputTpl">
               <input type="text" style="width:110px">
             </script>
+            <!-- 商务总监弹出选择框模板 -->
             <script type="text/html" id="buss_people">
-              <input type="text" style="width:110px" class="buss_people1">
+              <input type="text" style="width:110px" class="buss_people_cont">
             </script>
-           
+            <script type="text/html" id="design_people">
+              <input type="text" autocomplete="off"  style="width:110px" class="design_people_cont">
+            </script>
+            <!-- 选择框模板 -->
+            <script type="text/html" id="project_source">
+              <select>
+                  <option value="0"> </option>
+                  <option value="1">阅读</option>
+                </select>
+            </script>
           </table>
         </div>
       </div>
     </div>
   </div>
-  <div id="hidden1" class="people-choose" lay-filter="hidden1" style="display: none">
+  <!-- <div id="hidden1" class="people-choose" lay-filter="hidden1" style="display: none;">
     <table id="buss-people" lay-filter="buss-people"></table>
-  </div>
-  <script type="text/html" id="hidden1-table-tool">
-    <a class="layui-btn layui-btn-xs" lay-event="select">选择</a>
-  </script>
-  
+  </div> -->
+
 
   <script src="../../layuiadmin/layui/layui.js"></script>
   <script src="../../layuiadmin/lib/jquery.js"></script>
+  <script src="../../layuiadmin/lib/extend/tableSelect.js"></script>
   <script src="../../layuiadmin/js/yuebao/yuebao_input.js"></script>
 </body>
 

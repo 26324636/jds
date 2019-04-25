@@ -8,18 +8,56 @@ table{
     position: relative;
     box-sizing: border-box;
     text-align: center;
+    overflow: visible;
 }
 .layui-fluid .layui-table-cell input{
     height: 28px;
     text-align: center;
+}
+.layui-fluid .layui-table-box {
+    overflow: visible;
 }
 .layui-fluid .layui-table-view .layui-table td, .layui-table-view .layui-table th {
     padding: 0px 0;
     border-top: none;
     border-left: none;
 }
+.tableSelect  .layui-btn-sm {
+    height: 25px !important;
+    line-height: 25px !important;
+    padding: 0 10px;
+    font-size: 12px;
+}
+.tableSelect  .layui-input{
+    width: 120px !important;
+    height: 25px !important;
+    font-size: 12px;
+}
+.tableSelect .layui-table-cell {
+    font-size: 12px;
+    height: 25px;
+    line-height: 25px;
+    padding: 0 5px ;
+    position: relative;
+    box-sizing: border-box;
+    text-align: center;
+}
+.layui-border-box{
 
-.people-choose .layui-table-cell {
+}
+.tableSelect .layui-table-view {
+    margin: 5px 0px;
+    height: 430px !important;
+}
+.tableSelect.layui-table td, .layui-table th {
+    padding: 1px 0;
+    border-top: none;
+    border-left: none;
+}
+.tableSelect .layui-table-main{
+    height: 360px !important;
+}
+/* .people-choose .layui-table-cell {
     height: 25px;
     line-height: 25px;
     padding: 0 5px ;
@@ -34,4 +72,10 @@ table{
     padding: 1px 0;
     border-top: none;
     border-left: none;
+} */
+.layui-btn-sm {
+    height: 25px !important;
+    line-height: 25px !important;
+    padding: 0 10px;
+    font-size: 12px;
 }
