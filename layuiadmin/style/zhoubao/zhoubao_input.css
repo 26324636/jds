@@ -1,0 +1,101 @@
+table{
+    width: 100%;
+}
+.layui-fluid .layui-table-cell {
+    height: 35px;
+    line-height: 35px;
+    padding: 0 5px ;
+    position: relative;
+    box-sizing: border-box;
+    text-align: center;
+    overflow: visible;
+}
+.layui-fluid .layui-table-cell input{
+    height: 28px;
+    text-align: center;
+}
+.layui-fluid .layui-table-box {
+    overflow: visible;
+}
+.layui-fluid .layui-table-view .layui-table td, .layui-table-view .layui-table th {
+    padding: 0px 0;
+    border-top: none;
+    border-left: none;
+}
+.tableSelect  .layui-btn-sm {
+    height: 25px !important;
+    line-height: 25px !important;
+    padding: 0 10px;
+    font-size: 12px;
+}
+.tableSelect  .layui-input{
+    width: 120px !important;
+    height: 25px !important;
+    font-size: 12px;
+}
+.tableSelect .layui-table-cell {
+    font-size: 12px;
+    height: 25px;
+    line-height: 25px;
+    padding: 0 5px ;
+    position: relative;
+    box-sizing: border-box;
+    text-align: center;
+}
+.layui-border-box{
+
+}
+.tableSelect .layui-table-view {
+    margin: 5px 0px;
+    height: 430px !important;
+}
+.tableSelect.layui-table td, .layui-table th {
+    padding: 1px 0;
+    border-top: none;
+    border-left: none;
+}
+.tableSelect .layui-table-main{
+    height: 360px !important;
+}
+/* .people-choose .layui-table-cell {
+    height: 25px;
+    line-height: 25px;
+    padding: 0 5px ;
+    position: relative;
+    box-sizing: border-box;
+    text-align: center;
+}
+.people-choose .layui-table-view {
+    margin: 0px 0px;
+}
+.people-choose .layui-table td, .layui-table th {
+    padding: 1px 0;
+    border-top: none;
+    border-left: none;
+} */
+.layui-form-select{
+    height: 30px !important;
+    top: 2.5px;
+    /* border: 1px solid #ddd; */
+}
+.layui-form-select dl{
+    top: 30px;
+    font-size: 12px; 
+    /* z-index: 99999; */
+}
+.layui-form-select dl dd{
+    line-height: 25px;
+}
+.layui-form-select .layui-select-title{
+    font-size: 12px;
+    height: 25px;
+}
+.layui-form-select .layui-input{
+    border-color: #A9A9A9;
+    font-size: 12px;
+}
+
+.layui-form-select .layui-fluid .layui-table-cell input {
+    height: 30px;
+    text-align: center;
+}
