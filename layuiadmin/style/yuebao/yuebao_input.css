@@ -73,9 +73,29 @@ table{
     border-top: none;
     border-left: none;
 } */
-.layui-btn-sm {
-    height: 25px !important;
-    line-height: 25px !important;
-    padding: 0 10px;
+.layui-form-select{
+    height: 30px !important;
+    top: 2.5px;
+    /* border: 1px solid #ddd; */
+}
+.layui-form-select dl{
+    top: 30px;
+    font-size: 12px; 
+    /* z-index: 99999; */
+}
+.layui-form-select dl dd{
+    line-height: 25px;
+}
+.layui-form-select .layui-select-title{
     font-size: 12px;
+    height: 25px;
+}
+.layui-form-select .layui-input{
+    border-color: #A9A9A9;
+    font-size: 12px;
+}
+
+.layui-form-select .layui-fluid .layui-table-cell input {
+    height: 30px;
+    text-align: center;
 }

@@ -37,15 +37,41 @@
             <script type="text/html" id="buss_people">
               <input type="text" style="width:110px" class="buss_people_cont">
             </script>
+            <!-- 设计总监弹出选择模板 -->
             <script type="text/html" id="design_people">
-              <input type="text" autocomplete="off"  style="width:110px" class="design_people_cont">
+              <input type="text" autocomplete="off" style="width:110px" class="design_people_cont">
+            </script>
+            <!-- 项目负责人弹出选择模板 -->
+            <script type="text/html" id="project_leader">
+              <input type="text" autocomplete="off" style="width:110px" class="project_leader_cont">
             </script>
             <!-- 选择框模板 -->
             <script type="text/html" id="project_source">
-              <select>
-                  <option value="0"> </option>
-                  <option value="1">阅读</option>
+              <select class="layui-form">
+                <option value="0"> </option>
+                <option value="1">0.1集团外-融创</option>
+                <option value="2">1.绿城房产</option>
+                <option value="3">0.1.1融创-广深区域-佛山公司</option>
+                <option value="4">0.1.2.2融创-华北区域-天津北部平台</option>
+              </select>
+            </script>
+            <!-- 省模板 -->
+            <script type="text/html" id="provinceTpl">
+              <form>
+                <select name="province" class="province" lay-filter="province">
+                    <option value=""> </option>
                 </select>
+              </form>
+            </script>
+            <!-- 市模板 -->
+            <script type="text/html" id="cityTpl">
+              <select class="city">
+                <option value="0"> </option>
+              </select>
+            </script>
+            <!-- 时间模板 -->
+            <script type="text/html" id="timeTpl">
+              <input type="text" style="width:130px" class="sign_time" >
             </script>
           </table>
         </div>
@@ -56,10 +82,10 @@
     <table id="buss-people" lay-filter="buss-people"></table>
   </div> -->
 
-
+  <script src="../../layuiadmin/lib/jquery.min.js"></script>
   <script src="../../layuiadmin/layui/layui.js"></script>
-  <script src="../../layuiadmin/lib/jquery.js"></script>
   <script src="../../layuiadmin/lib/extend/tableSelect.js"></script>
+  <script src="../../layuiadmin/lib/extend/area.js"></script>
   <script src="../../layuiadmin/js/yuebao/yuebao_input.js"></script>
 </body>
 

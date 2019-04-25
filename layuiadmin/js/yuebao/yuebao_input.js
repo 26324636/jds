@@ -1,18 +1,26 @@
+/*********************************
+** 名称:月报输入模块
+**
+** 作者:钟佳闱
+**
+** 时间:2019年4月25日
+**
+** 描述:月报输入
+**********************************/
 var $, admin, table, layer, laydate, form;
 layui.config({
     base: '../../layuiadmin/' //静态资源所在路径
 }).extend({
     index: 'lib/index' //主入口模块
-}).use(['index', 'table', 'form'], function () {
+}).use(['index', 'table', 'form','laydate'], function () {
     $ = layui.$,
         admin = layui.admin,
         table = layui.table,
         layer = layui.layer,
         laydate = layui.laydate,
         form = layui.form;
-  
-
-
+        form.render();
+    //加载表格数据
     table.render({
         elem: '#test-table-fixed',
         url: layui.setter.base + 'json/table/people.js',
@@ -54,27 +62,23 @@ layui.config({
             }, {
                 title: '项目负责人',
                 width: 120,
-                templet: '#test-table-inputTpl'
+                templet: '#project_leader'
             }, {
                 title: '项目来源',
-                width: 120,
+                width: 220,
                 templet: '#project_source'
             }, {
-                title: '月报维护人',
-                width: 120,
-                templet: '#test-table-inputTpl'
-            }, {
                 title: '省份',
-                width: 120,
-                templet: '#test-table-inputTpl'
+                width: 150,
+                templet: '#provinceTpl'
             }, {
                 title: '城市',
                 width: 120,
-                templet: '#test-table-inputTpl'
+                templet: '#cityTpl'
             }, {
-                title: '合同状态',
-                width: 120,
-                templet: '#test-table-inputTpl'
+                title: '签订时间',
+                width: 140,
+                templet: '#timeTpl'
             }, {
                 title: '合同分类',
                 width: 120,
@@ -104,9 +108,25 @@ layui.config({
                     design_people(index)
                 })
             });
+            $('.project_leader_cont').each(function (index) {
+                $(this).focus(function(){
+                    project_leader(index)
+                })
+            });
+            loadProvince() //加载省
+            //加载时间表格
+            lay('.sign_time').each(function(){ 
+                laydate.render({
+                  elem: this
+                  ,trigger: 'click'
+                });
+              }); 
+            
             
         }
     });
+    
+    //商务总监弹出选择框
     function buss_people(index){
         var tableSelect = layui.tableSelect;
         tableSelect.render({
@@ -129,6 +149,7 @@ layui.config({
             }
         })
     }
+    //设计总监弹出选择框
     function design_people(index){
         var tableSelect = layui.tableSelect;
         tableSelect.render({
@@ -149,7 +170,78 @@ layui.config({
             }
         })
     }
-    
+    //项目负责人弹出选择框
+    function project_leader(index){
+        var tableSelect = layui.tableSelect;
+        tableSelect.render({
+            elem: '.project_leader_cont',
+            table: {
+                url: layui.setter.base + 'json/yuebao/buss_people.js',
+                cols: [[
+                    { type: 'numbers',title: 'No.'},
+                    { field: 'id', title: '员工编号',width: 100,height: 25},
+                    { field: 'name', title: '员工编号',width: 100,height: 25},
+                    { field: 'company', title: '员工编号',width: 100,height: 25},
+                    { field: 'department', title: '员工编号',width: 100,height: 25},
+                    { field: 'keyInfo', title: '员工编号',width: 140,height: 25}
+                ]]
+            },
+            done: function (elem, data) {
+                elem[index].value = data.data[0].name;
+            }
+        })
+    }
+    // function getSelectValue() {   //获取省市县/区在area.js配置的地区编码
+    //     var province = document.getElementById("province").value;
+    //     var city = document.getElementById("city").value;
+    //     var area = document.getElementById("area").value;
+
+
+    //     alert(province.split('_', 1));
+    //     alert(city.split('_', 1));
+    //     alert(area);
+    // }
+
+    //加载省
+    function loadProvince() {
+        var areaData = Area;
+        var proHtml = '';
+        for (var i = 0; i < areaData.length; i++) {
+            proHtml += '<option value="' + areaData[i].provinceCode + '_' + areaData[i].mallCityList.length + '_' + i +'">' + areaData[i].provinceName + '</option>';
+        }
+        //初始化省数据
+        $('.province').append(proHtml);
+        form.render();
+        form.on('select(province)', function(data) {
+            //当前是哪一行的下标
+            var currentLine = $(this).closest('tr')[0].dataset.index
+            
+            // $form.find('select[name=area]').html('<option value="">请选择县/区</option>').parent().hide();
+            var value = data.value;
+            var d = value.split('_');
+            var code = d[0];
+            var count = d[1];
+            var index = d[2];
+            if (count > 0) {
+                loadCity(areaData[index].mallCityList,currentLine);
+            } else {
+                // $('.city').parent().hide();
+            }
+        });
+    }
+    //加载市
+    function loadCity(citys,currentLine) {
+        var cityHtml = '';
+        for (var i = 0; i < citys.length; i++) {
+            cityHtml += '<option value="' + citys[i].cityCode + '_' + citys[i].mallAreaList.length + '_' + i +'">' + citys[i].cityName + '</option>';
+        }
+        // $('.city').innerHTML = cityHtml;
+        console.log($('.city'))
+        $('.city')[currentLine].innerHTML =  cityHtml ;
+        // var city = document.getElementsByClassName('.city');
+        $('.city').parent().show();
+        form.render();
+    }
   // var buss_people_index = 0; //当前
     // var buss_people_table = {
     //     elem: '#buss-people',
