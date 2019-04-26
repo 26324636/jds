@@ -1,6 +1,15 @@
 table{
     width: 100%;
 }
+.yuebao-top{
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+.layui-fluid {
+    padding: 0;
+    margin-top: -20px;
+}
 .layui-fluid .layui-table-cell {
     height: 35px;
     line-height: 35px;
@@ -73,15 +82,20 @@ table{
     border-top: none;
     border-left: none;
 } */
-.layui-form-select{
+.table-main .layui-form-select{
     height: 30px !important;
     top: 2.5px;
     /* border: 1px solid #ddd; */
 }
+.layui-form-select{
+    overflow: visible;
+}
 .layui-form-select dl{
-    top: 30px;
+    top: 0px;
     font-size: 12px; 
-    /* z-index: 99999; */
+    z-index: 99999 !important;
+    /* overflow: visible; */
+    position: relative !important;
 }
 .layui-form-select dl dd{
     line-height: 25px;
