@@ -20,74 +20,52 @@ layui.config({
         laydate = layui.laydate,
         form = layui.form;
         form.render();
+    
+    
+        window.viewObj = {
+			tbData: [{
+                id:0,projectNumber:'',projectName:''}
+                ,{id:1,projectNumber:'',projectName:''}
+                ,{id:2,projectNumber:'',projectName:''}
+                ,{id:3,projectNumber:'',projectName:''}
+                ,{id:4,projectNumber:'',projectName:''}
+                ,{id:5,projectNumber:'',projectName:''}
+                ,{id:6,projectNumber:'',projectName:''}
+                ,{id:7,projectNumber:'',projectName:''}
+                ,{id:8,projectNumber:'',projectName:''}
+                ,{id:9,projectNumber:'',projectName:''}]
+            
+
+		};
+
+
+    
     //加载表格数据
-    table.render({
+    var layTableId = "layTable";
+
+    var tableIns = table.render({
         elem: '#test-table-fixed',
-        url: layui.setter.base + 'json/table/people.js',
+        data:viewObj.tbData,
+        url:null,
+        // url: layui.setter.base + 'json/table/people.js',
         width: admin.screen() > 1 ? '' : '',
         height: '',
         page: false,
+        limit:30,
+        id: layTableId,
         cols: [
-            [{title: '序号',
-                type: 'numbers',
-                fixed: 'left'
-            }, {
-                title: '项目编号',
-                width: 120,
-                fixed: 'left',
-                templet: '#test-table-inputTpl'
-            }, {
-                title: '项目名称',
-                width: 120,
-                fixed: 'left',
-                templet: '#test-table-inputTpl'
-            }, {
-                title: '子项编号',
-                width: 120,
-                fixed: 'left',
-                templet: '#test-table-inputTpl'
-            }, {
-                title: '子项名称',
-                width: 120,
-                fixed: 'left',
-                templet: '#test-table-inputTpl'
-            }, {
-                title: '商务总监',
-                width: 120,
-                templet: '#buss_people'
-            }, {
-                title: '设计总监',
-                width: 120,
-                templet: '#design_people'
-            }, {
-                title: '项目负责人',
-                width: 120,
-                templet: '#project_leader'
-            }, {
-                title: '项目来源',
-                width: 220,
-                templet: '#project_source'
-            }, {
-                title: '省份',
-                width: 150,
-                templet: '#provinceTpl'
-            }, {
-                title: '城市',
-                width: 120,
-                templet: '#cityTpl'
-            }, {
-                title: '签订时间',
-                width: 140,
-                templet: '#timeTpl'
-            }, {
-                title: '合同分类',
-                width: 120,
-                templet: '#test-table-inputTpl'
-            }, {
-                title: '合同登记',
-                width: 120,
-                templet: '#test-table-inputTpl'
-            }]
+            [{title: '序号',type: 'numbers',fixed: 'left'}
+            , {title: '项目编号',width: 120,fixed: 'left',templet: '#project_num',field:'projectNumber',value:'projectNumber'}
+            , {title: '项目名称',width: 120,fixed: 'left',templet: '#project_name',field:'projectName'}
+            , {title: '子项编号',width: 120,fixed: 'left',templet: '#test-table-inputTpl'}
+            , {title: '子项名称',width: 120,fixed: 'left',templet: '#test-table-inputTpl'}
+            , {title: '商务总监',width: 120,templet: '#buss_people'}
+            , {title: '设计总监',width: 120,templet: '#design_people'}
+            , {title: '项目负责人',width: 120,templet: '#project_leader'}
+            , {title: '项目来源',width: 220,templet: '#project_source'}
+            , {title: '省份',width: 150,templet: '#provinceTpl'}
+            , {title: '城市',width: 120,templet: '#cityTpl'}
+            , {title: '签订时间',width: 140,templet: '#timeTpl'}]
         ],
         done: function (res, curr, count) {
             $('.layui-table th').css({
@@ -120,12 +98,37 @@ layui.config({
                   elem: this
                   ,trigger: 'click'
                 });
-              }); 
-            
+            }); 
+            $('.project_num_cont').each(function (index,v) {
+                $(this).change(function(){
+                    console.log(v)
+                    console.log($(this)[0].dataset.id)
+                    console.log(viewObj.tbData)
+                    var id = $(this)[0].dataset.id
+                    viewObj.tbData[id].projectNumber = $(this)[0].value;
+                })
+            }); 
+            $('.project_name_cont').each(function (index,v) {
+                $(this).change(function(){
+                    var id = $(this)[0].dataset.id
+                    viewObj.tbData[id].projectName = $(this)[0].value;
+                })
+            }); 
             
         }
     });
-    
+   //增加一行
+    $("#addTable").click(function(){
+       var oldData = viewObj.tbData;
+        console.log(oldData);
+        var id = oldData.length;
+        var newRow = {id:id, projectNumber:'',projectName:''};
+        oldData.push(newRow);
+        tableIns.reload({
+            data : oldData
+        });
+        viewObj.tbData = oldData;
+      });
     //商务总监弹出选择框
     function buss_people(index){
         var tableSelect = layui.tableSelect;
