@@ -14,7 +14,7 @@
 </head>
 
 <body>
-  <div class="layui-form " >
+  <div class="layui-form table-top">
     <div class="layui-col-space10  yuebao-top">
       <div class="layui-col-md1">
         <select>
@@ -29,27 +29,42 @@
         <input type="text" name="title" placeholder="请输入内容" autocomplete="off" class="layui-input">
       </div>
       <div class="layui-btn-container">
-        <button class="layui-btn layui-btn-normal">搜索</button>
+        <button class="layui-btn layui-btn-normal search-btn">搜索</button>
       </div>
     </div>
-  </div>
   </div>
   <div class="layui-fluid table-main">
     <div class="layui-row layui-col-space15">
       <div class="layui-col-md12">
         <div class="layui-card-body">
-          <table class="layui-hide" id="test-table-fixed">
+          <table class="layui-hide" id="test-table-fixed" lay-data="{id: 'idTest'}">
+            <!-- 普通输入框模板 -->
+            <script type="text/html" id="inputTpl">
+              <input type="text" style="width:100%" class="project_num_cont" data-id="{{d.id}}">
+            </script>
             <!-- 项目编号输入框模板 -->
             <script type="text/html" id="project_num">
-              <input type="text" style="width:110px" class="project_num_cont" data-id="{{d.id}}" value="{{d.projectNumber}}">
+              <input type="text" style="width:110px" class="project_num_cont" data-id="{{d.id}}"
+                value="{{d.projectNumber}}">
             </script>
             <!-- 项目名字模板 -->
             <script type="text/html" id="project_name">
-              <input type="text" style="width:110px" class="project_name_cont" data-id="{{d.id}}" value="{{d.projectName}}">
+              <input type="text" style="width:110px" class="project_name_cont" data-id="{{d.id}}"
+                value="{{d.projectName}}">
+            </script>
+            <!-- 子项编号模板 -->
+            <script type="text/html" id="subitem_num">
+              <input type="text" style="width:110px" class="subitem_num_cont" data-id="{{d.id}}"
+                value="{{d.subitemNumber}}">
+            </script>
+            <!-- 子项名称模板 -->
+            <script type="text/html" id="subitem_name">
+              <input type="text" style="width:110px" class="subitem_name_cont" data-id="{{d.id}}"
+                value="{{d.subitemName}}">
             </script>
             <!-- 商务总监弹出选择框模板 -->
             <script type="text/html" id="buss_people">
-              <input type="text" style="width:110px" class="buss_people_cont" >
+              <input type="text" style="width:110px" class="buss_people_cont">
             </script>
             <!-- 设计总监弹出选择模板 -->
             <script type="text/html" id="design_people">
@@ -58,6 +73,10 @@
             <!-- 项目负责人弹出选择模板 -->
             <script type="text/html" id="project_leader">
               <input type="text" autocomplete="off" style="width:110px" class="project_leader_cont">
+            </script>
+            <!-- 月报维护人弹出选择模板 -->
+            <script type="text/html" id="yuebao_defend">
+              <input type="text" autocomplete="off" style="width:110px" class="yuebao_defend_cont">
             </script>
             <!-- 选择框模板 -->
             <script type="text/html" id="project_source">
@@ -71,11 +90,13 @@
             </script>
             <!-- 省模板 -->
             <script type="text/html" id="provinceTpl">
-              <form>
+              <div class="layui-form ">
+                <!-- <form> -->
                 <select name="province" class="province" lay-filter="province">
                   <option value=""> </option>
                 </select>
-              </form>
+                <!-- </form> -->
+              </div>
             </script>
             <!-- 市模板 -->
             <script type="text/html" id="cityTpl">
@@ -88,12 +109,19 @@
               <input type="text" style="width:130px" class="sign_time">
             </script>
           </table>
-          <button class="layui-btn layui-btn-sm layui-btn-normal" id="addTable">加行</button>
+          <div class="yuebao_btn">
+            <input type="text" placeholder="请输入行数" class="layui-input line-input">
+            <button class="layui-btn layui-btn-sm layui-btn-normal" id="addTable">加行</button>
+            <button class="layui-btn layui-btn-sm layui-btn-normal" id="showDetail">显示细节</button>
+            <button class="layui-btn layui-btn-sm layui-btn-normal" id="saveBtn">保存</button>
+            <button class="layui-btn layui-btn-sm layui-btn-normal" id="saveBtn">导出XLS</button>
+          </div>
+
         </div>
       </div>
-    </div> 
+    </div>
   </div>
-  
+
   <!-- <div id="hidden1" class="people-choose" lay-filter="hidden1" style="display: none;">
     <table id="buss-people" lay-filter="buss-people"></table>
   </div> -->
