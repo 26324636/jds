@@ -61,13 +61,13 @@ layui.config({
             , {title: '项目负责人',width: 120,templet: '#project_leader'}
             , {title: '月报维护人',width: 120,templet: '#yuebao_defend'}
             , {title: '项目来源',width: 220,templet: '#project_source'}
-            , {title: '省份',width: 150,templet: '#provinceTpl'}
-            , {title: '城市',width: 120,templet: '#cityTpl'}
+            , {title: '省份',width: 150,templet: '#provinceTpl',hide:hideDetail}
+            , {title: '城市',width: 120,templet: '#cityTpl',hide:hideDetail}
             , {title: '合同签订时间',width: 140,templet: '#timeTpl'}
-            , {title: '项目等级',width: 120,templet: '#inputTpl'}
+            , {title: '项目等级',width: 120,templet: '#inputTpl',hide:hideDetail}
             , {title: '合同签订状态',width: 120,templet: '#inputTpl'}
-            , {title: '产值前置面积类型',width: 150,templet: '#inputTpl'}
-            , {title: '产值前置面积(万方)',width: 150,templet: '#inputTpl'}
+            , {title: '产值前置面积类型',width: 150,templet: '#inputTpl',hide:hideDetail}
+            , {title: '产值前置面积(万方)',width: 150,templet: '#inputTpl',hide:hideDetail}
             , {title: '子项原始合同额(万)',width: 150,templet: '#inputTpl'}
             , {title: '子项合同结算额(万)',width: 150,templet: '#inputTpl'}
             , {title: '子项外包合同额(万)',width: 150,templet: '#inputTpl'}
@@ -77,8 +77,8 @@ layui.config({
             , {title: '合同签订公司',width: 120,templet: '#inputTpl'}
             , {title: '拓展公司',width: 120,templet: '#inputTpl'}
             , {title: '是单专业/全专业扩初项目',width: 180,templet: '#inputTpl'}
-            , {title: '方案扩初二合一报批',width: 140,templet: '#inputTpl'}
-            , {title: '项目进度',width: 120,templet: '#inputTpl'}
+            , {title: '方案扩初二合一报批',width: 140,templet: '#inputTpl',hide:hideDetail}
+            , {title: '项目进度',width: 120,templet: '#inputTpl',hide:hideDetail}
             , {title: '项目进度-新',width: 120,templet: '#inputTpl'}
             , {title: '起始日期-方案',width: 120,templet: '#inputTpl'}
             , {title: '终止日期-方案',width: 120,templet: '#inputTpl'}
@@ -233,13 +233,13 @@ layui.config({
                 , {title: '项目负责人',width: 120,templet: '#project_leader'}
                 , {title: '月报维护人',width: 120,templet: '#yuebao_defend'}
                 , {title: '项目来源',width: 220,templet: '#project_source'}
-                , {title: '省份',width: 150,templet: '#provinceTpl'}
-                , {title: '城市',width: 120,templet: '#cityTpl'}
+                , {title: '省份',width: 150,templet: '#provinceTpl',hide:hideDetail}
+                , {title: '城市',width: 120,templet: '#cityTpl',hide:hideDetail}
                 , {title: '合同签订时间',width: 140,templet: '#timeTpl'}
-                , {title: '项目等级',width: 120,templet: '#inputTpl'}
+                , {title: '项目等级',width: 120,templet: '#inputTpl',hide:hideDetail}
                 , {title: '合同签订状态',width: 120,templet: '#inputTpl'}
-                , {title: '产值前置面积类型',width: 150,templet: '#inputTpl'}
-                , {title: '产值前置面积(万方)',width: 150,templet: '#inputTpl'}
+                , {title: '产值前置面积类型',width: 150,templet: '#inputTpl',hide:hideDetail}
+                , {title: '产值前置面积(万方)',width: 150,templet: '#inputTpl',hide:hideDetail}
                 , {title: '子项原始合同额(万)',width: 150,templet: '#inputTpl'}
                 , {title: '子项合同结算额(万)',width: 150,templet: '#inputTpl'}
                 , {title: '子项外包合同额(万)',width: 150,templet: '#inputTpl'}
@@ -249,8 +249,8 @@ layui.config({
                 , {title: '合同签订公司',width: 120,templet: '#inputTpl'}
                 , {title: '拓展公司',width: 120,templet: '#inputTpl'}
                 , {title: '是单专业/全专业扩初项目',width: 180,templet: '#inputTpl'}
-                , {title: '方案扩初二合一报批',width: 120,templet: '#inputTpl'}
-                , {title: '项目进度',width: 120,templet: '#inputTpl'}
+                , {title: '方案扩初二合一报批',width: 140,templet: '#inputTpl',hide:hideDetail}
+                , {title: '项目进度',width: 120,templet: '#inputTpl',hide:hideDetail}
                 , {title: '项目进度-新',width: 120,templet: '#inputTpl'}
                 , {title: '起始日期-方案',width: 120,templet: '#inputTpl'}
                 , {title: '终止日期-方案',width: 120,templet: '#inputTpl'}
