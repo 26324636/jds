@@ -90,12 +90,25 @@ table{
 .layui-form-select{
     overflow: visible;
 }
-.layui-form-select dl{
-    top: 0px;
+.table-top .layui-input{
+    border-color: #A9A9A9;
+}
+.table-top .line-input::-webkit-input-placeholder {
+    color: #A9A9A9;
+}
+.table-top .layui-form-select dl{
+    top: 38px;
+}
+.table-top .layui-form-select .layui-select-title {
+    height: 38px;
+}
+.table-main .layui-form-select dl{
+    top: 30px;
     font-size: 12px; 
-    z-index: 99999 !important;
+    z-index: 66666666 !important;
+    position: absolute;
     /* overflow: visible; */
-    position: relative !important;
+    /* position: relative !important; */
 }
 .layui-form-select dl dd{
     line-height: 25px;
@@ -113,3 +126,24 @@ table{
     height: 30px;
     text-align: center;
 }
+#addTable{
+    margin-left: 5px;
+}
+.yuebao_btn{
+    display: flex;
+}
+
+.layui-fluid .line-input{
+    height: 32px ;
+    width: 120px;
+    border-color: #A9A9A9;
+}
+.layui-fluid .line-input::-webkit-input-placeholder {
+    color: #A9A9A9;
+}
+/* .table-main .layui-table-cell {
+    height:auto;
+   overflow:visible;
+  text-overflow:inherit;
+ white-space:normal;
+  } */

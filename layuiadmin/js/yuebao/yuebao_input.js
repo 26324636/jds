@@ -21,28 +21,25 @@ layui.config({
         form = layui.form;
         form.render();
     
-    
         window.viewObj = {
 			tbData: [{
-                id:0,projectNumber:'',projectName:''}
-                ,{id:1,projectNumber:'',projectName:''}
-                ,{id:2,projectNumber:'',projectName:''}
-                ,{id:3,projectNumber:'',projectName:''}
-                ,{id:4,projectNumber:'',projectName:''}
-                ,{id:5,projectNumber:'',projectName:''}
-                ,{id:6,projectNumber:'',projectName:''}
-                ,{id:7,projectNumber:'',projectName:''}
-                ,{id:8,projectNumber:'',projectName:''}
-                ,{id:9,projectNumber:'',projectName:''}]
-            
-
+                id:0,projectNumber:'',projectName:'',subitemNumber:'',subitemName:''}
+                ,{id:1,projectNumber:'',projectName:'',subitemNumber:'',subitemName:''}
+                ,{id:2,projectNumber:'',projectName:'',subitemNumber:'',subitemName:''}
+                ,{id:3,projectNumber:'',projectName:'',subitemNumber:'',subitemName:''}
+                ,{id:4,projectNumber:'',projectName:'',subitemNumber:'',subitemName:''}
+                ,{id:5,projectNumber:'',projectName:'',subitemNumber:'',subitemName:''}
+                ,{id:6,projectNumber:'',projectName:'',subitemNumber:'',subitemName:''}
+                ,{id:7,projectNumber:'',projectName:'',subitemNumber:'',subitemName:''}
+                ,{id:8,projectNumber:'',projectName:'',subitemNumber:'',subitemName:''}
+                ,{id:9,projectNumber:'',projectName:'',subitemNumber:'',subitemName:''}]
 		};
 
 
     
     //加载表格数据
     var layTableId = "layTable";
-
+    var hideDetail = true;
     var tableIns = table.render({
         elem: '#test-table-fixed',
         data:viewObj.tbData,
@@ -56,18 +53,66 @@ layui.config({
         cols: [
             [{title: '序号',type: 'numbers',fixed: 'left'}
             , {title: '项目编号',width: 120,fixed: 'left',templet: '#project_num',field:'projectNumber',value:'projectNumber'}
-            , {title: '项目名称',width: 120,fixed: 'left',templet: '#project_name',field:'projectName'}
-            , {title: '子项编号',width: 120,fixed: 'left',templet: '#test-table-inputTpl'}
-            , {title: '子项名称',width: 120,fixed: 'left',templet: '#test-table-inputTpl'}
+            , {title: '项目名称',width: 120,fixed: 'left',templet: '#project_name',field:'projectName',value:'projectName'}
+            , {title: '子项编号',width: 120,fixed: 'left',templet: '#subitem_num',field:'subitemNumber',value:'subitemNumber'}
+            , {title: '子项名称',width: 120,fixed: 'left',templet: '#subitem_name',field:'subitemName',value:'subitemName'}
             , {title: '商务总监',width: 120,templet: '#buss_people'}
             , {title: '设计总监',width: 120,templet: '#design_people'}
             , {title: '项目负责人',width: 120,templet: '#project_leader'}
+            , {title: '月报维护人',width: 120,templet: '#yuebao_defend'}
             , {title: '项目来源',width: 220,templet: '#project_source'}
             , {title: '省份',width: 150,templet: '#provinceTpl'}
             , {title: '城市',width: 120,templet: '#cityTpl'}
-            , {title: '签订时间',width: 140,templet: '#timeTpl'}]
+            , {title: '合同签订时间',width: 140,templet: '#timeTpl'}
+            , {title: '项目等级',width: 120,templet: '#inputTpl'}
+            , {title: '合同签订状态',width: 120,templet: '#inputTpl'}
+            , {title: '产值前置面积类型',width: 150,templet: '#inputTpl'}
+            , {title: '产值前置面积(万方)',width: 150,templet: '#inputTpl'}
+            , {title: '子项原始合同额(万)',width: 150,templet: '#inputTpl'}
+            , {title: '子项合同结算额(万)',width: 150,templet: '#inputTpl'}
+            , {title: '子项外包合同额(万)',width: 150,templet: '#inputTpl'}
+            , {title: '结构超限',width: 120,templet: '#inputTpl'}
+            , {title: '收款切分项目类型',width: 120,templet: '#inputTpl'}
+            , {title: '设计阶段组成',width: 120,templet: '#inputTpl'}
+            , {title: '合同签订公司',width: 120,templet: '#inputTpl'}
+            , {title: '拓展公司',width: 120,templet: '#inputTpl'}
+            , {title: '是单专业/全专业扩初项目',width: 180,templet: '#inputTpl'}
+            , {title: '方案扩初二合一报批',width: 140,templet: '#inputTpl'}
+            , {title: '项目进度',width: 120,templet: '#inputTpl'}
+            , {title: '项目进度-新',width: 120,templet: '#inputTpl'}
+            , {title: '起始日期-方案',width: 120,templet: '#inputTpl'}
+            , {title: '终止日期-方案',width: 120,templet: '#inputTpl'}
+            , {title: '参与专业-方案',width: 120,templet: '#inputTpl'}
+            , {title: '起始日期-扩初',width: 120,templet: '#inputTpl'}
+            , {title: '终止日期-扩初',width: 120,templet: '#inputTpl'}
+            , {title: '参与专业-扩初',width: 120,templet: '#inputTpl'}
+            , {title: '起始日期-施工图',width: 120,templet: '#inputTpl'}
+            , {title: '终止日期-施工图',width: 120,templet: '#inputTpl'}
+            , {title: '参与专业-施工图',width: 120,templet: '#inputTpl'}
+            , {title: '起始日期-后期',width: 120,templet: '#inputTpl'}
+            , {title: '终止日期-后期',width: 120,templet: '#inputTpl'}
+            , {title: '参与专业-后期',width: 120,templet: '#inputTpl'}
+            , {title: '规划景观BIM标记',width: 120,templet: '#inputTpl'}
+            , {title: '截止上年年末已完成工作量比例--方案',width: 260, templet: '#inputTpl'}
+            , {title: '截止上年年末已完成工作量比例--扩初',width: 260,templet: '#inputTpl'}
+            , {title: '截止上年年末已完成工作量比例--施工图',width: 280,templet: '#inputTpl'}
+            , {title: '截止上年年末已完成工作量比例--后期服务',width: 280,templet: '#inputTpl'}
+            , {title: '累计至提报日期已完成工作量比例--方案',width: 260,templet: '#inputTpl'}
+            , {title: '累计至提报日期已完成工作量比例--扩初',width: 260,templet: '#inputTpl'}
+            , {title: '累计至提报日期已完成工作量比例--施工图',width: 280,templet: '#inputTpl'}
+            , {title: '累计至提报日期已完成工作量比例--后期服务',width: 280,templet: '#inputTpl'}
+            , {title: '预计至本年年末可完成工作量比例--方案',width: 260,templet: '#inputTpl'}
+            , {title: '预计至本年年末可完成工作量比例--扩初',width: 260,templet: '#inputTpl'}
+            , {title: '预计至本年年末可完成工作量比例--施工图',width: 280,templet: '#inputTpl'}
+            , {title: '预计至本年年末可完成工作量比例--后期服务',width: 280,templet: '#inputTpl'}
+            , {title: '专业负责人-建筑-扩初及以后阶段',width: 260,templet: '#inputTpl'}
+            , {title: '专业负责人-结构',width: 120,templet: '#inputTpl'}
+            , {title: '专业负责人-给排水',width: 120,templet: '#inputTpl'}
+            , {title: '专业负责人-电气',width: 120,templet: '#inputTpl'}
+            , {title: '专业负责人-暖通',width: 120,templet: '#inputTpl'}
+            , {title: '周报维护人',width: 120,templet: '#inputTpl'}]
         ],
-        done: function (res, curr, count) {
+        done: function (res, curr, count) {         
             $('.layui-table th').css({
                 'color': '#5792c6',
                 'font-weight': 'bold'
@@ -76,22 +121,32 @@ layui.config({
                 'color': 'green',
                 'font-weight': 'bold'
             })
+            //商务总监
             $('.buss_people_cont').each(function (index) {
                 $(this).focus(function(){
                     buss_people(index)
                 })
             });
+            //设计总监
             $('.design_people_cont').each(function (index) {
                 $(this).focus(function(){
                     design_people(index)
                 })
             });
+            //项目负责人
             $('.project_leader_cont').each(function (index) {
                 $(this).focus(function(){
                     project_leader(index)
                 })
             });
-            loadProvince() //加载省
+            //月报维护人
+            $('.yuebao_defend_cont').each(function (index) {
+                $(this).focus(function(){
+                    yuebao_defend(index)
+                })
+            });
+            //加载省
+            loadProvince();
             //加载时间表格
             lay('.sign_time').each(function(){ 
                 laydate.render({
@@ -99,6 +154,7 @@ layui.config({
                   ,trigger: 'click'
                 });
             }); 
+            //项目编号改变后保存到缓存
             $('.project_num_cont').each(function (index,v) {
                 $(this).change(function(){
                     console.log(v)
@@ -108,27 +164,129 @@ layui.config({
                     viewObj.tbData[id].projectNumber = $(this)[0].value;
                 })
             }); 
+            //项目名称改变后保存到缓存
             $('.project_name_cont').each(function (index,v) {
                 $(this).change(function(){
                     var id = $(this)[0].dataset.id
                     viewObj.tbData[id].projectName = $(this)[0].value;
                 })
             }); 
+            //子项编号改变后保存到缓存
+            $('.subitem_num_cont').each(function (index,v) {
+                $(this).change(function(){
+                    var id = $(this)[0].dataset.id
+                    viewObj.tbData[id].subitemNumber = $(this)[0].value;
+                })
+            }); 
+            //子项名称改变后保存到缓存
+            $('.subitem_name_cont').each(function (index,v) {
+                $(this).change(function(){
+                    var id = $(this)[0].dataset.id
+                    viewObj.tbData[id].subitemName = $(this)[0].value;
+                })
+            }); 
+            
             
         }
     });
-   //增加一行
+   //增加行
     $("#addTable").click(function(){
        var oldData = viewObj.tbData;
+       var line_num = $('.line-input')[0].value;
+       console.log(line_num);
         console.log(oldData);
         var id = oldData.length;
-        var newRow = {id:id, projectNumber:'',projectName:''};
-        oldData.push(newRow);
+        var newRow = {id:id, projectNumber:'',projectName:'',subitemNumber:'',subitemName:''};
+
+        if(line_num == ''){
+            oldData.push(newRow);
+        }else{
+            for(var i = 0 ; i < line_num ; i ++){
+                oldData.push(newRow);
+            }
+        }
+
         tableIns.reload({
             data : oldData
         });
         viewObj.tbData = oldData;
       });
+    //显示细节
+    $("#showDetail").click(function(){
+        hideDetail = !hideDetail;
+        if(hideDetail){
+            $(this)[0].innerHTML = '显示细节';
+        }else{
+            $(this)[0].innerHTML = '隐藏细节';
+        }
+        var oldData = viewObj.tbData;
+        console.log(oldData)
+        tableIns.reload({
+            cols: [
+                [{title: '序号',type: 'numbers',fixed: 'left'}
+                , {title: '项目编号',width: 120,fixed: 'left',templet: '#project_num',field:'projectNumber',value:'projectNumber'}
+                , {title: '项目名称',width: 120,fixed: 'left',templet: '#project_name',field:'projectName',value:'projectName'}
+                , {title: '子项编号',width: 120,fixed: 'left',templet: '#subitem_num',field:'subitemNumber',value:'subitemNumber'}
+                , {title: '子项名称',width: 120,fixed: 'left',templet: '#subitem_name',field:'subitemName',value:'subitemName'}
+                , {title: '商务总监',width: 120,templet: '#buss_people'}
+                , {title: '设计总监',width: 120,templet: '#design_people'}
+                , {title: '项目负责人',width: 120,templet: '#project_leader'}
+                , {title: '月报维护人',width: 120,templet: '#yuebao_defend'}
+                , {title: '项目来源',width: 220,templet: '#project_source'}
+                , {title: '省份',width: 150,templet: '#provinceTpl'}
+                , {title: '城市',width: 120,templet: '#cityTpl'}
+                , {title: '合同签订时间',width: 140,templet: '#timeTpl'}
+                , {title: '项目等级',width: 120,templet: '#inputTpl'}
+                , {title: '合同签订状态',width: 120,templet: '#inputTpl'}
+                , {title: '产值前置面积类型',width: 150,templet: '#inputTpl'}
+                , {title: '产值前置面积(万方)',width: 150,templet: '#inputTpl'}
+                , {title: '子项原始合同额(万)',width: 150,templet: '#inputTpl'}
+                , {title: '子项合同结算额(万)',width: 150,templet: '#inputTpl'}
+                , {title: '子项外包合同额(万)',width: 150,templet: '#inputTpl'}
+                , {title: '结构超限',width: 120,templet: '#inputTpl'}
+                , {title: '收款切分项目类型',width: 120,templet: '#inputTpl'}
+                , {title: '设计阶段组成',width: 120,templet: '#inputTpl'}
+                , {title: '合同签订公司',width: 120,templet: '#inputTpl'}
+                , {title: '拓展公司',width: 120,templet: '#inputTpl'}
+                , {title: '是单专业/全专业扩初项目',width: 180,templet: '#inputTpl'}
+                , {title: '方案扩初二合一报批',width: 120,templet: '#inputTpl'}
+                , {title: '项目进度',width: 120,templet: '#inputTpl'}
+                , {title: '项目进度-新',width: 120,templet: '#inputTpl'}
+                , {title: '起始日期-方案',width: 120,templet: '#inputTpl'}
+                , {title: '终止日期-方案',width: 120,templet: '#inputTpl'}
+                , {title: '参与专业-方案',width: 120,templet: '#inputTpl'}
+                , {title: '起始日期-扩初',width: 120,templet: '#inputTpl'}
+                , {title: '终止日期-扩初',width: 120,templet: '#inputTpl'}
+                , {title: '参与专业-扩初',width: 120,templet: '#inputTpl'}
+                , {title: '起始日期-施工图',width: 120,templet: '#inputTpl'}
+                , {title: '终止日期-施工图',width: 120,templet: '#inputTpl'}
+                , {title: '参与专业-施工图',width: 120,templet: '#inputTpl'}
+                , {title: '起始日期-后期',width: 120,templet: '#inputTpl'}
+                , {title: '终止日期-后期',width: 120,templet: '#inputTpl'}
+                , {title: '参与专业-后期',width: 120,templet: '#inputTpl'}
+                , {title: '规划景观BIM标记',width: 120,templet: '#inputTpl'}
+                , {title: '截止上年年末已完成工作量比例--方案',width: 240, templet: '#inputTpl'}
+                , {title: '截止上年年末已完成工作量比例--扩初',width: 240,templet: '#inputTpl'}
+                , {title: '截止上年年末已完成工作量比例--施工图',width: 240,templet: '#inputTpl'}
+                , {title: '截止上年年末已完成工作量比例--后期服务',width: 240,templet: '#inputTpl'}
+                , {title: '累计至提报日期已完成工作量比例--方案',width: 240,templet: '#inputTpl'}
+                , {title: '累计至提报日期已完成工作量比例--扩初',width: 240,templet: '#inputTpl'}
+                , {title: '累计至提报日期已完成工作量比例--施工图',width: 240,templet: '#inputTpl'}
+                , {title: '累计至提报日期已完成工作量比例--后期服务',width: 240,templet: '#inputTpl'}
+                , {title: '预计至本年年末可完成工作量比例--方案',width: 240,templet: '#inputTpl'}
+                , {title: '预计至本年年末可完成工作量比例--扩初',width: 240,templet: '#inputTpl'}
+                , {title: '预计至本年年末可完成工作量比例--施工图',width: 240,templet: '#inputTpl'}
+                , {title: '预计至本年年末可完成工作量比例--后期服务',width: 240,templet: '#inputTpl'}
+                , {title: '专业负责人-建筑-扩初及以后阶段',width: 180,templet: '#inputTpl'}
+                , {title: '专业负责人-结构',width: 120,templet: '#inputTpl'}
+                , {title: '专业负责人-给排水',width: 120,templet: '#inputTpl'}
+                , {title: '专业负责人-电气',width: 120,templet: '#inputTpl'}
+                , {title: '专业负责人-暖通',width: 120,templet: '#inputTpl'}
+                , {title: '周报维护人',width: 120,templet: '#inputTpl'}]
+            ],
+            data : oldData
+        });
+    })
     //商务总监弹出选择框
     function buss_people(index){
         var tableSelect = layui.tableSelect;
@@ -178,6 +336,30 @@ layui.config({
         var tableSelect = layui.tableSelect;
         tableSelect.render({
             elem: '.project_leader_cont',
+            table: {
+                url: layui.setter.base + 'json/yuebao/buss_people.js',
+                cols: [[
+                    { type: 'numbers',title: 'No.'},
+                    { field: 'id', title: '员工编号',width: 100,height: 25},
+                    { field: 'name', title: '员工编号',width: 100,height: 25},
+                    { field: 'company', title: '员工编号',width: 100,height: 25},
+                    { field: 'department', title: '员工编号',width: 100,height: 25},
+                    { field: 'keyInfo', title: '员工编号',width: 140,height: 25}
+                ]]
+            },
+            done: function (elem, data) {
+                elem[index].value = data.data[0].name;
+            }
+        })
+    }
+    //月报维护人弹出选择框
+     //商务总监弹出选择框
+     function yuebao_defend(index){
+        var tableSelect = layui.tableSelect;
+        tableSelect.render({
+            elem: '.yuebao_defend_cont',
+            page:true,
+            // checkedKey: 'id',
             table: {
                 url: layui.setter.base + 'json/yuebao/buss_people.js',
                 cols: [[
