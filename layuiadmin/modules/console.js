@@ -188,21 +188,21 @@ layui.define(function(exports){
     var $ = layui.$
     ,table = layui.table;
     
-    //今日热搜
+    //系统公告
     table.render({
       elem: '#LAY-index-topSearch'
       ,url: layui.setter.base + 'json/console/top-search.js' //模拟接口
       ,page: true
       ,cols: [[
         {type: 'numbers', fixed: 'left'}
-        ,{field: 'keywords', title: '关键词', minWidth: 300, templet: '<div><a href="https://www.baidu.com/s?wd={{ d.keywords }}" target="_blank" class="layui-table-link">{{ d.keywords }}</div>'}
-        ,{field: 'frequency', title: '搜索次数', minWidth: 120, sort: true}
-        ,{field: 'userNums', title: '用户数', sort: true}
+        ,{field: 'title', title: '标题', minWidth: 300, templet: '<div><a href="https://www.baidu.com/s?wd={{ d.title }}" target="_blank" class="layui-table-link">{{ d.title }}</div>'}
+        ,{field: 'publisher', title: '发布人', minWidth: 120, sort: true}
+        ,{field: 'pubDate', title: '发布时间', sort: true}
       ]]
       ,skin: 'line'
     });
     
-    //今日热贴
+    //日常公告
     table.render({
       elem: '#LAY-index-topCard'
       ,url: layui.setter.base + 'json/console/top-card.js' //模拟接口
@@ -211,9 +211,9 @@ layui.define(function(exports){
       ,cols: [[
         {type: 'numbers', fixed: 'left'}
         ,{field: 'title', title: '标题', minWidth: 300, templet: '<div><a href="{{ d.href }}" target="_blank" class="layui-table-link">{{ d.title }}</div>'}
-        ,{field: 'username', title: '发帖者'}
+        ,{field: 'publisher', title: '发布人', minWidth: 120, sort: true}
         ,{field: 'channel', title: '类别'}
-        ,{field: 'crt', title: '点击率', sort: true}
+        ,{field: 'pubDate', title: '发布时间', sort: true}
       ]]
       ,skin: 'line'
     });

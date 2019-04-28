@@ -4,73 +4,59 @@
   ,"count": "100"
   ,"data": [{
     "id": 111
-    ,"title": "社区开始接受 “赞助商广告” 投放"
-    ,"username": "贤心"
-    ,"channel": "公告"
+    ,"title": "线上系统填写说明ver1.0-补充4-WB等外援/外包子项"
+    ,"publisher": "管理员"
+    ,"channel": "填写说明"
     ,"href": "http://fly.layui.com/jie/15697/"
-    ,"crt": 61632
+    ,"pubDate": "2018-07-31"
   },{
     "id": 222
-    ,"title": "layui 一周年"
-    ,"username": "猫吃"
-    ,"channel": "讨论"
+    ,"title": "线上系统填写说明ver1.0-补充6-月报中施工图设计时间补充说明"
+    ,"publisher": "管理员"
+    ,"channel": "填写说明"
     ,"href": "http://fly.layui.com/jie/16622/"
-    ,"crt": 61632
+    ,"pubDate": "2018-07-31"
   },{
     "id": 333
-    ,"title": "四个月的前端"
-    ,"username": "fd"
-    ,"channel": "分享"
+    ,"title": "线上系统填写说明ver1.0-补充5-周报各性质款项信息要素说明"
+    ,"publisher": "管理员"
+    ,"channel": "填写说明"
     ,"href": "http://fly.layui.com/jie/16651/"
-    ,"crt": 61632
+    ,"pubDate": "2018-07-31"
   },{
     "id": 333
-    ,"title": "如何评价LayUI和他的作者闲心"
-    ,"username": "纸飞机"
-    ,"channel": "提问"
+    ,"title": "线上系统填写说明ver1.0-补充3-设计起止日期补充说明"
+    ,"publisher": "管理员"
+    ,"channel": "填写说明"
     ,"href": "http://fly.layui.com/jie/9352/"
-    ,"crt": 61632
+    ,"pubDate": "2018-07-31"
   },{
     "id": 333
-    ,"title": "如何评价LayUI和他的作者闲心"
-    ,"username": "纸飞机"
-    ,"channel": "提问"
+    ,"title": "线上系统填写说明ver1.0-补充2"
+    ,"publisher": "管理员"
+    ,"channel": "填写说明"
     ,"href": "http://fly.layui.com/jie/9352/"
-    ,"crt": 61632
+    ,"pubDate": "2018-07-31"
   },{
     "id": 333
-    ,"title": "如何评价LayUI和他的作者闲心"
-    ,"username": "纸飞机"
-    ,"channel": "提问"
+    ,"title": "线上系统填写说明ver1.0-补充1"
+    ,"publisher": "管理员"
+    ,"channel": "填写说明"
     ,"href": "http://fly.layui.com/jie/9352/"
-    ,"crt": 61632
+    ,"pubDate": "2018-07-31"
   },{
     "id": 333
-    ,"title": "如何评价LayUI和他的作者闲心"
-    ,"username": "纸飞机"
-    ,"channel": "提问"
+    ,"title": "线上系统填写说明ver1.0-补充1"
+    ,"publisher": "管理员"
+    ,"channel": "填写说明"
     ,"href": "http://fly.layui.com/jie/9352/"
-    ,"crt": 61632
+    ,"pubDate": "2018-07-31"
   },{
     "id": 333
-    ,"title": "如何评价LayUI和他的作者闲心"
-    ,"username": "纸飞机"
-    ,"channel": "提问"
+    ,"title": "线上系统填写说明ver1.0"
+    ,"publisher": "管理员"
+    ,"channel": "填写说明"
     ,"href": "http://fly.layui.com/jie/9352/"
-    ,"crt": 61632
-  },{
-    "id": 333
-    ,"title": "如何评价LayUI和他的作者闲心"
-    ,"username": "纸飞机"
-    ,"channel": "提问"
-    ,"href": "http://fly.layui.com/jie/9352/"
-    ,"crt": 61632
-  },{
-    "id": 333
-    ,"title": "如何评价LayUI和他的作者闲心"
-    ,"username": "纸飞机"
-    ,"channel": "提问"
-    ,"href": "http://fly.layui.com/jie/9352/"
-    ,"crt": 61632
+    ,"pubDate": "2018-07-31"
   }]
 }
