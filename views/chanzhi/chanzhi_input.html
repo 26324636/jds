@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>固定列 - 数据表格</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <link rel="stylesheet" href="../../layuiadmin/layui/css/layui.css" media="all">
+  <link rel="stylesheet" href="../../layuiadmin/style/admin.css" media="all">
+  <link rel="stylesheet" href="../../layuiadmin/style/yuebao/yuebao_input.css">
+</head>
+
+<body>
+  <div class="layui-form table-top">
+    <div class="layui-col-space10  yuebao-top">
+      <div class="layui-col-md1">
+        <select>
+          <option value="1">项目编号</option>
+          <option value="2">项目名称</option>
+          <option value="3">子项编号</option>
+          <option value="4">子项名称</option>
+          <option value="4">项目负责人</option>
+        </select>
+      </div>
+      <div class="layui-col-md2">
+        <input type="text" name="title" placeholder="请输入内容" autocomplete="off" class="layui-input">
+      </div>
+      <div class="layui-btn-container">
+        <button class="layui-btn layui-btn-normal search-btn">搜索</button>
+      </div>
+    </div>
+  </div>
+  <div class="layui-fluid table-main">
+    <div class="layui-row layui-col-space15">
+      <div class="layui-col-md12">
+        <div class="layui-card-body">
+          <table class="layui-hide" id="test-table-fixed" lay-data="{id: 'idTest'}">
+            <!-- 普通输入框模板 -->
+            <script type="text/html" id="inputTpl">
+              <input type="text" style="width:100%" class="project_num_cont" data-id="{{d.id}}">
+            </script>
+            <!-- 项目编号输入框模板 -->
+            <script type="text/html" id="project_num">
+              <input type="text" style="width:110px" class="project_num_cont" data-id="{{d.id}}"
+                value="{{d.projectNumber}}">
+            </script>
+            <!-- 项目名字模板 -->
+            <script type="text/html" id="project_name">
+              <input type="text" style="width:110px" class="project_name_cont" data-id="{{d.id}}"
+                value="{{d.projectName}}">
+            </script>
+            <!-- 子项编号模板 -->
+            <script type="text/html" id="subitem_num">
+              <input type="text" style="width:110px" class="subitem_num_cont" data-id="{{d.id}}"
+                value="{{d.subitemNumber}}">
+            </script>
+            <!-- 子项名称模板 -->
+            <script type="text/html" id="subitem_name">
+              <input type="text" style="width:110px" class="subitem_name_cont" data-id="{{d.id}}"
+                value="{{d.subitemName}}">
+            </script>
+            <!-- 商务总监弹出选择框模板 -->
+            <script type="text/html" id="buss_people">
+              <input type="text" style="width:110px" class="buss_people_cont">
+            </script>
+            <!-- 设计总监弹出选择模板 -->
+            <script type="text/html" id="design_people">
+              <input type="text" autocomplete="off" style="width:110px" class="design_people_cont">
+            </script>
+            <!-- 项目负责人弹出选择模板 -->
+            <script type="text/html" id="project_leader">
+              <input type="text" autocomplete="off" style="width:110px" class="project_leader_cont">
+            </script>
+            <!-- 月报维护人弹出选择模板 -->
+            <script type="text/html" id="yuebao_defend">
+              <input type="text" autocomplete="off" style="width:110px" class="yuebao_defend_cont">
+            </script>
+            <!-- 选择框模板 -->
+            <script type="text/html" id="project_source">
+              <select class="layui-form">
+                <option value="0"> </option>
+                <option value="1">0.1集团外-融创</option>
+                <option value="2">1.绿城房产</option>
+                <option value="3">0.1.1融创-广深区域-佛山公司</option>
+                <option value="4">0.1.2.2融创-华北区域-天津北部平台</option>
+              </select>
+            </script>
+            <!-- 省模板 -->
+            <script type="text/html" id="provinceTpl">
+              <div class="layui-form ">
+                <!-- <form> -->
+                <select name="province" class="province" lay-filter="province">
+                  <option value=""> </option>
+                </select>
+                <!-- </form> -->
+              </div>
+            </script>
+            <!-- 市模板 -->
+            <script type="text/html" id="cityTpl">
+              <select class="city">
+                <option value="0"> </option>
+              </select>
+            </script>
+            <!-- 时间模板 -->
+            <script type="text/html" id="timeTpl">
+              <input type="text" style="width:130px" class="sign_time">
+            </script>
+          </table>
+          <div class="yuebao_btn">
+            <input type="text" placeholder="请输入行数" class="layui-input line-input">
+            <button class="layui-btn layui-btn-sm layui-btn-normal" id="addTable">加行</button>
+            <button class="layui-btn layui-btn-sm layui-btn-normal" id="showDetail">显示细节</button>
+            <button class="layui-btn layui-btn-sm layui-btn-normal" id="saveBtn">保存</button>
+            <button class="layui-btn layui-btn-sm layui-btn-normal" id="saveBtn">导出XLS</button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- <div id="hidden1" class="people-choose" lay-filter="hidden1" style="display: none;">
+    <table id="buss-people" lay-filter="buss-people"></table>
+  </div> -->
+
+  <!-- <script src="../../layuiadmin/lib/jquery.min.js"></script> -->
+  <script src="../../layuiadmin/layui/layui.js"></script>
+  <script src="../../layuiadmin/lib/extend/tableSelect.js"></script>
+  <script src="../../layuiadmin/lib/extend/area.js"></script>
+  <script src="../../layuiadmin/js/yuebao/yuebao_input.js"></script>
+</body>
+
+</html>
