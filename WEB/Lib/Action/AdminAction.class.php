@@ -6,10 +6,72 @@ header('Access-Control-Allow-Methods: GET, POST, PUT');
 
 Class AdminAction extends Action{
 
-	public function test(){
-		echo 1;
+	//管理员获取所有用户信息
+	public function user_list(){
+		$user = M('tb_user');
+		$count = $user -> count();
+		$page = $_GET['page'];
+		$limit = $_GET['limit'];
+
+		$list = $user->page($page,$limit)->select();
+		$arr['code'] = '0';
+		$arr['data'] = $list;
+		$arr['count'] = $count;
+		echo json_encode($arr);
 	}
 	
+	//管理员添加用户
+	public function user_add(){
+		$number = $_POST['number_data'];
+		$name = $_POST['name_data'];
+		$company = $_POST['company_data'];
+		$department = $_POST['department_data'];
+		$keyword = $_POST['keyword_data'];
+
+		$data['code'] = '200';
+		//判断用户是否存在
+		$arr = M('tb_user') -> where("`number` = '$number'") -> find();
+		if($arr){
+			$data['status'] = -1;
+			echo json_encode($data);
+			exit;
+		}
+		$data['number'] = $number;
+		$data['name'] = $name;
+		$data['pws'] = '123456';
+		$data['corporation'] = $company;
+		$data['department'] = $department;
+		$data['keyhint'] = $keyword;
+		$data['authority'] = 3;
+		$data['status'] = 1;
+
+		$re = M('tb_user') -> add($data);
+		$data['status'] = $re;
+
+		echo json_encode($data);
+
+	}
+
+	//获取公司出现不重复集合字段
+	public function arr_company(){
+		$data['code'] = '200';
+		
+		$arr = M('tb_user') -> field('corporation') ->distinct(true) ->select();
+		$data['company'] = $arr;
+
+		echo json_encode($data);
+	}
+
+	//获取部门出现不重复集合字段
+	public function arr_department(){
+		$data['code'] = '200';
+		
+		$arr = M('tb_user') -> field('department') ->distinct(true) ->select();
+		$data['department'] = $arr;
+
+		echo json_encode($data);
+	}
+
 	//管理员登录
 	public function login(){
 		$username = $_GET['user_data'];
