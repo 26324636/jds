@@ -31,49 +31,123 @@
     var data = obj.data;
     if(obj.event === 'del'){
         layer.confirm('确定删除此用户？', function(index){
-          console.log(obj)
+          var id = obj.data.id;
+          $.ajax({
+            type: "GET",
+            dataType:"text",
+            url: layui.setter.request_url + "/Admin/user_del",
+            data: {
+              id_data:id
+            },
+            async: true,
+            success: function(data) {
+              var data = JSON.parse(data);
+              if(data.status == 1){
+                layer.msg('删除成功',{icon:1,time:'1200'});
+              }else{
+                layer.msg('删除失败',{icon:1,time:'1200'});
+              }
+            }
+          })
           obj.del();
           layer.close(index);
         });
     }else if(obj.event === 'edit'){
       var tr = $(obj.tr);
-
+      var id = obj.data.id;
       layer.open({
         type: 2
         ,title: '编辑管理员'
-        ,content: '../../../views/user/administrators/adminform.html'
+        ,content: 'user_edit.html?id=' + id
         ,area: ['420px', '420px']
-        ,btn: ['确定', '取消']
+        ,btn: ['保存', '重置密码','取消']
         ,yes: function(index, layero){
-          var iframeWindow = window['layui-layer-iframe'+ index]
-          ,submitID = 'LAY-user-back-submit'
-          ,submit = layero.find('iframe').contents().find('#'+ submitID);
+          //获取open页面里面的各项数据
+          var number = layero.find('iframe').contents().find('input[name="number"]')[0].value;
+          var name = layero.find('iframe').contents().find('input[name="name"]')[0].value;
+          var company = layero.find('iframe').contents().find('select[name="company"]')[0].value;          
+          var department = layero.find('iframe').contents().find('select[name="department"]')[0].value;
+          var keyword = layero.find('iframe').contents().find('input[name="keyword"]')[0].value;
 
-          //监听提交
-          iframeWindow.layui.form.on('submit('+ submitID +')', function(data){
-            var field = data.field; //获取提交的字段
-            
-            //提交 Ajax 成功后，静态更新表格中的数据
-            //$.ajax({});
-            table.reload('LAY-user-front-submit'); //数据刷新
-            layer.close(index); //关闭弹层
-          });  
-          
-          submit.trigger('click');
+          //条件判断
+          if(number == ""){
+            layer.msg('请输入员工编号',{icon:0,time:'1200'});
+          }else if(name == ""){
+            layer.msg('请输入姓名',{icon:0,time:'1200'});
+          }else if(company == ""){
+            layer.msg('请输入公司',{icon:0,time:'1200'});
+          }else if(department == ""){
+            layer.msg('请输入部门',{icon:0,time:'1200'});
+          }else if(keyword == ""){
+            layer.msg('请输入关键字',{icon:0,time:'1200'});
+          }else{
+            $.ajax({
+              type: "POST",
+              dataType:"text",
+              url: layui.setter.request_url + "/Admin/user_update",
+              data: {
+                id_data:id,
+                number_data: number,
+                name_data: name,
+                company_data: company,
+                department_data: department,
+                keyword_data: keyword
+              },
+              async: true,
+              success: function(data) {
+                var data = JSON.parse(data);
+                console.log(data)
+                if(data.status == 1){
+                  layer.msg('保存成功',{icon:1,time:'1200'});
+                  table.reload('tb-user'); //表格重载
+                  layer.close(index); //关闭弹出页面
+                }else{
+                  layer.msg('保存失败',{icon:0,time:'1200'});
+                }
+              }
+            })
+          }
         }
-        ,success: function(layero, index){           
-          
+        ,btn2: function(index, layero){
+          layer.confirm('确认重置？', {
+            btn: ['确认', '取消'] //可以无限个按钮
+          }, function(index, layero){
+            $.ajax({
+              type: "POST",
+              dataType:"text",
+              url: layui.setter.request_url + "/Admin/user_resetPwd",
+              data: {
+                id_data:id
+              },
+              async: true,
+              success: function(data) {
+                var data = JSON.parse(data);
+                console.log(data)
+                if(data.status == 0 || data.status == 1){
+                  layer.msg('重置成功',{icon:1,time:'1200'});
+                  layer.close(layer.index);
+                }else{
+                  layer.msg('重置失败',{icon:0,time:'1200'});
+                }
+              }
+            })
+          }, function(index){
+            console.log('取消')
+          });
+          return false;
         }
+        
       })
     }
   });
   //监听搜索
-  form.on('submit(LAY-user-back-search)', function(data){
-    var field = data.field;
-    
-    //执行重载
-    table.reload('LAY-user-back-manage', {
-      where: field
+  form.on('submit(search)', function(data){
+    var number = $("input[name='number']")[0].value;
+    console.log(number)
+    table.reload('tb-user', {
+      method: 'POST'
+      , where: {'number': number}
+      , page:{curr:1}
     });
   });
 
@@ -83,7 +157,7 @@
       layer.open({
         type: 2
         ,title: '添加用户'
-        ,content: 'userform.html'
+        ,content: 'user_add.html'
         ,area: ['420px', '420px']
         ,btn: ['确定', '取消']
         ,yes: function(index, layero){
@@ -93,7 +167,7 @@
           //获取open页面里面的各项数据
           var number = layero.find('iframe').contents().find('input[name="number"]')[0].value;
           var name = layero.find('iframe').contents().find('input[name="name"]')[0].value;
-          var company = layero.find('iframe').contents().find('input[name="company"]')[0].value;          
+          var company = layero.find('iframe').contents().find('select[name="company"]')[0].value;          
           var department = layero.find('iframe').contents().find('select[name="department"]')[0].value;
           var keyword = layero.find('iframe').contents().find('input[name="keyword"]')[0].value;
 

@@ -8,16 +8,38 @@ Class AdminAction extends Action{
 
 	//管理员获取所有用户信息
 	public function user_list(){
-		$user = M('tb_user');
-		$count = $user -> count();
-		$page = $_GET['page'];
-		$limit = $_GET['limit'];
+		if(IS_GET){
+			$user = M('tb_user');
+			$count = $user -> count();
+			$page = $_GET['page'];
+			$limit = $_GET['limit'];
+	
+			$list = $user->page($page,$limit)->select();
+			$arr['code'] = '0';
+			$arr['data'] = $list;
+			$arr['count'] = $count;
+			echo json_encode($arr);
+		}else if(IS_POST){
+			$user = M('tb_user'); 
+			
+			//获取分页和查询的数据
+			$page = $_POST['page'];
+			$limit = $_POST['limit'];
+			$number = $_POST['number'];
+	
+			$map['number'] =array('like','%'.$number.'%');
+			//分页结果
+			$result= $user ->where($map)->page($page,$limit)->select();
+			//查询分页的数量
+			$count = $user ->where($map)->count();
 
-		$list = $user->page($page,$limit)->select();
-		$arr['code'] = '0';
-		$arr['data'] = $list;
-		$arr['count'] = $count;
-		echo json_encode($arr);
+			$arr['code'] = '0';
+			$arr['data'] = $result;
+			$arr['count'] = $count;
+			
+			echo json_encode($arr);
+		}
+
 	}
 	
 	//管理员添加用户
@@ -36,16 +58,16 @@ Class AdminAction extends Action{
 			echo json_encode($data);
 			exit;
 		}
-		$data['number'] = $number;
-		$data['name'] = $name;
-		$data['pws'] = '123456';
-		$data['corporation'] = $company;
-		$data['department'] = $department;
-		$data['keyhint'] = $keyword;
-		$data['authority'] = 3;
-		$data['status'] = 1;
+		$res['number'] = $number;
+		$res['name'] = $name;
+		$res['pwd'] = '123456';
+		$res['corporation'] = $company;
+		$res['department'] = $department;
+		$res['keyhint'] = $keyword;
+		$res['authority'] = 3;
+		$res['status'] = 1;
 
-		$re = M('tb_user') -> add($data);
+		$re = M('tb_user') -> add($res);
 		$data['status'] = $re;
 
 		echo json_encode($data);
@@ -70,6 +92,70 @@ Class AdminAction extends Action{
 		$data['department'] = $arr;
 
 		echo json_encode($data);
+	}
+
+	//管理员删除用户
+	public function user_del(){
+		$id = $_GET['id_data'];
+
+		$arr=M('tb_user')-> where("id = '$id'") -> delete();
+
+		$data['code'] = '200';
+		$data['status'] = $arr;
+
+		echo json_encode($data);
+	}
+
+	//管理员编辑，返回某个用户的信息
+	public function user_info(){
+		$id = $_GET['id_data'];
+
+		$arr=M('tb_user')-> where("id = '$id'") -> select();
+
+		$data['code'] = '200';
+		$data['mes'] = $arr;
+		echo json_encode($data);
+	}
+
+	//管理员编辑，保存某个用户的信息
+	public function user_update(){
+		$id = $_POST['id_data'];
+		$number = $_POST['number_data'];
+		$name = $_POST['name_data'];
+		$company = $_POST['company_data'];
+		$department = $_POST['department_data'];
+		$keyword = $_POST['keyword_data'];
+
+		$res['number'] = $number;
+		$res['name'] = $name;
+		$res['corporation'] = $company;
+		$res['department'] = $department;
+		$res['keyhint'] = $keyword;
+
+		$re= M('tb_user') -> where("id = '$id'") -> save($res);
+
+		$data['code'] = '200';
+		$data['status'] = $re;
+		echo json_encode($data);
+	}
+
+	//管理员重置某个人的密码
+	public  function user_resetPwd(){
+		$id = $_POST['id_data'];
+		
+		$res['pwd'] = '123456';
+
+		$re= M('tb_user') -> where("id = '$id'") -> save($res);
+
+		$data['code'] = '200';
+		$data['status'] = $re;
+		
+		echo json_encode($data);
+	}
+
+	//管理员通过账号进行模糊搜索
+	public function user_search(){
+	
 	}
 
 	//管理员登录

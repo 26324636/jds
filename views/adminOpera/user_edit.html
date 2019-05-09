@@ -1,0 +1,179 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>layuiAdmin 管理员 iframe 框</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <link rel="stylesheet" href="../../layuiadmin/layui/css/layui.css" media="all">
+</head>
+<body>
+
+  <div class="layui-form" lay-filter="layuiadmin-form-admin" id="layuiadmin-form-admin" style="padding: 20px 30px 0 0;">
+    <div class="layui-form-item">
+      <label class="layui-form-label">员工编号</label>
+      <div class="layui-input-inline">
+        <input type="text" id="number" name="number" placeholder="请输入用户名" autocomplete="off" class="layui-input">
+      </div>
+    </div>
+    <div class="layui-form-item">
+      <label class="layui-form-label">姓名</label>
+      <div class="layui-input-inline">
+        <input type="text" name="name"  placeholder="请输入号码" autocomplete="off" class="layui-input">
+      </div>
+    </div>
+    <div class="layui-form-item">
+      <label class="layui-form-label">公司</label>
+      <div class="layui-input-inline">
+          <input type="text" name="company" hidden="true" value="" >
+          <select name="company" id="company" lay-filter="company"></select>
+      </div>
+    </div>
+    <div class="layui-form-item">
+      <label class="layui-form-label">部门</label>
+      <div class="layui-input-inline">
+        <input type="text" name="department" hidden="true" value="" >
+        <select name="department" id="department">
+        </select>
+      </div>
+    </div>
+    <div class="layui-form-item">
+      <label class="layui-form-label">关键字</label>
+      <div class="layui-input-inline">
+        <input type="text" name="keyword"placeholder="请输入关键字" autocomplete="off" class="layui-input">
+      </div>
+    </div>
+    <div class="layui-form-item layui-hide">
+      <!-- <input type="button" lay-submit lay-filter="LAY-user-front-submit" id="LAY-user-back-submit" value="确认"> -->
+    </div>
+  </div>
+
+  <script src="../../layuiadmin/layui/layui.js"></script>  
+  <script src="../../layuiadmin/lib/jquery.min.js"></script>
+  <script>
+    
+  layui.config({
+    base: '../../layuiadmin/' //静态资源所在路径
+  }).extend({
+    index: 'lib/index' //主入口模块
+  }).use(['index', 'form','jquery'], function(){
+    var $ = layui.$
+    ,form = layui.form ;
+
+    var userId = getUrlParam('id');
+    console.log(userId);
+    getCompanyList(); //添加用户获取公司列表
+    getDepartentLsit(); //添加用户获取部门列表
+    
+    
+
+    //url解析获取父页面传过来的参数
+    function getUrlParam(name){
+        var reg = new RegExp("(^|&)"+name+"=([^&]*)(&|$)"); 
+        var r =  window.location.search.substr(1).match(reg);
+        var strValue = "";
+        if (r!=null){
+        strValue= unescape(r[2]);
+        }
+        return strValue;
+    }
+    
+    //获取用户的信息
+    function getUserInfo(){
+
+        $.ajax({
+            type: "GET",
+            dataType:"text",
+            url: layui.setter.request_url + "/Admin/user_info",
+            data: {
+              id_data:userId
+            },
+            async: true,
+            success: function(data) {
+                var number = $('input[name="number"]')[0];
+                var name = $('input[name="name"]')[0];
+                var company = $('select[name="company"]')[0];          
+                var department = $('select[name="department"]')[0];
+                var keyword = $('input[name="keyword"]')[0];
+                var data = JSON.parse(data);
+                var mes = data.mes[0];
+                number.value = mes.number;
+                name.value = mes.name;
+                company.value = mes.corporation;
+                department.value = mes.department;
+                keyword.value = mes.keyhint;
+                form.render();
+            }
+        })
+    }
+    //添加用户获取公司列表
+    function getCompanyList(){
+      var company = $('#company')[0];
+      $.ajax({
+        type: "GET",
+        dataType:"text",
+        url: layui.setter.request_url + "/Admin/arr_company",
+        data: {
+        },
+        async: true,
+        success: function(data) {
+          var json = JSON.parse(data).company;
+          //将返回的公司列表动态添加到select中
+          for(var a in json){
+            company.innerHTML += '<option value="' + json[a].corporation +'">' + json[a].corporation +'</option>'
+          }
+          //一定要表单重载，不然会显示不出
+          form.render();
+          
+        }
+      }) 
+      
+    }
+
+    //添加用户获取部门列表
+    function getDepartentLsit(){
+      var company = $('#department')[0];
+      $.ajax({
+        type: "GET",
+        dataType:"text",
+        url: layui.setter.request_url + "/Admin/arr_department",
+        data: {
+        },
+        async: true,
+        success: function(data) {
+          var json = JSON.parse(data).department;
+
+          //将返回的部门列表动态添加到select中
+          for(var a in json){
+            department.innerHTML += '<option value="' + json[a].department +'">' + json[a].department +'</option>'
+          }
+          //一定要表单重载，不然会显示不出
+          form.render();
+          getUserInfo(); //获取某个用户的信息
+        }
+      }) 
+      
+    }
+   
+  //公司select选择框监听
+  form.on('select(company)',function(data){
+    //将input框隐藏，select选择后赋值input的value，以便layui.open里获取公司
+    $('input[name="company"]')[0].value = data.value;
+    
+  });
+  //部门select选择框监听
+  form.on('select(department)',function(data){
+    //将input框隐藏，select选择后赋值input的value，以便layui.open里获取部门
+    $('input[name="department"]')[0].value = data.value;
+  });
+
+
+   
+  })
+ 
+  </script>
+</body>
+</html>

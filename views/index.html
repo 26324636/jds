@@ -204,6 +204,10 @@
   }).extend({
     index: 'lib/index' //主入口模块
   }).use('index');
+  var user_info = sessionStorage.getItem('user_info');
+  if(user_info == null){
+    location.href = 'user/login.html';
+  }
   </script>
 
 </body>
