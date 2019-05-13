@@ -143,10 +143,10 @@
   //监听搜索
   form.on('submit(search)', function(data){
     var number = $("input[name='number']")[0].value;
-    console.log(number)
+    var name = $("input[name='name']")[0].value;
     table.reload('tb-user', {
       method: 'POST'
-      , where: {'number': number}
+      , where: {'number': number,'name': name}
       , page:{curr:1}
     });
   });
