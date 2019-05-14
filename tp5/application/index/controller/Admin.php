@@ -2,16 +2,25 @@
 
 namespace app\index\controller;
 use think\Db;
-class Admin
-{
+use think\Cache;
+use app\index\controller\Base;  
+class Admin extends Base 
+{ 
 	//管理员获取所有用户信息
 	public function user_list(){
+		//判断是否是管理员
+		if(!Base::is_admin()){
+			echo '您不是管理员，暂无权限';
+			exit;
+		}
+		//判断是否是GET请求
 		if(request()->isGet()){
 			$user = db('tb_user');
 			$count = $user -> count();
 			$page = $_GET['page'];
 			$limit = $_GET['limit'];
-	
+
+			//分页
 			$list = $user->page($page,$limit)->select();
 			$arr['code'] = '0';
 			$arr['data'] = $list;
@@ -24,31 +33,36 @@ class Admin
 			$page = $_POST['page'];
 			$limit = $_POST['limit'];
 			$number = $_POST['number'];
-            $name = $_POST['name'];
+			$name = $_POST['name'];
 
-            //查询模糊搜索
+			//查询模糊搜索
 			$result = $user->where([
-                    ['number', 'like','%'.$number.'%'],
-                    ['name', 'like', '%'.$name.'%'],
-                ])
-                ->page($page,$limit)->select();
+					['number', 'like','%'.$number.'%'],
+					['name', 'like', '%'.$name.'%'],
+				])
+				->page($page,$limit)->select();
 			//查询分页的数量
 			$count = $user ->where(([
-                ['number', 'like','%'.$number.'%'],
-                ['name', 'like', '%'.$name.'%'],
-            ]))->count();
+				['number', 'like','%'.$number.'%'],
+				['name', 'like', '%'.$name.'%'],
+			]))->count();
 
 			$arr['code'] = '0';
 			$arr['data'] = $result;
 			$arr['count'] = $count;
 			
 			echo json_encode($arr);
-        }
-    }
+		}
+  }
 
     //管理员添加用户
 	public function user_add(){
-        $db = db('tb_user');
+		//判断是否是管理员
+		if(!Base::is_admin()){
+			echo '您不是管理员，暂无权限';
+			exit;
+		}	
+    $db = db('tb_user');
 		$number = $_POST['number_data'];
 		$name = $_POST['name_data'];
 		$company = $_POST['company_data'];
@@ -102,6 +116,11 @@ class Admin
     
 	//管理员删除用户
 	public function user_del(){
+		//判断是否是管理员
+		if(!Base::is_admin()){
+			echo '您不是管理员，暂无权限';
+			exit;
+		}	
 		$id = $_GET['id_data'];
 
 		$arr=db('tb_user')-> where("id",$id) -> delete();
@@ -114,6 +133,11 @@ class Admin
     
     //管理员编辑，返回某个用户的信息
 	public function user_info(){
+		//判断是否是管理员
+		if(!Base::is_admin()){
+			echo '您不是管理员，暂无权限';
+			exit;
+		}
 		$id = $_GET['id_data'];
 
 		$arr=db('tb_user')-> where("id",$id) -> select();
@@ -125,6 +149,11 @@ class Admin
     
     //管理员编辑，保存某个用户的信息
 	public function user_update(){
+		//判断是否是管理员
+		if(!Base::is_admin()){
+			echo '您不是管理员，暂无权限';
+			exit;
+		}
 		$id = $_POST['id_data'];
 		$number = $_POST['number_data'];
 		$name = $_POST['name_data'];
@@ -147,6 +176,11 @@ class Admin
     
     //管理员重置某个人的密码
 	public  function user_resetPwd(){
+		//判断是否是管理员
+		if(!Base::is_admin()){
+			echo '您不是管理员，暂无权限';
+			exit;
+		}
 		$id = $_POST['id_data'];
 		
 		$res['pwd'] = '123456';
