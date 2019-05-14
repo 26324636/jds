@@ -11,7 +11,7 @@
   //用户表格加载
   table.render({
     elem: '#tb-notice'
-    ,url: layui.setter.request_url + '/notice/notice_list' //模拟接口
+    ,url: layui.setter.request_url + '/Notice/notice_list' //模拟接口
     ,page:true
     ,id:'tb-notice'
     ,cols: [[
