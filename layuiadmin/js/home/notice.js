@@ -10,10 +10,10 @@
   
   //用户表格加载
   table.render({
-    elem: '#tb-user'
-    ,url: layui.setter.request_url + '/Admin/user_list' //模拟接口
+    elem: '#tb-notice'
+    ,url: layui.setter.request_url + '/notice/notice_list' //模拟接口
     ,page:true
-    ,id:'tb-user'
+    ,id:'tb-notice'
     ,cols: [[
       {type: 'numbers',title:'No.'}
       ,{field: 'title', title: '标题',align: 'center'}
@@ -27,10 +27,10 @@
   });
   
   //监听工具条
-  table.on('tool(tb-user)', function(obj){
+  table.on('tool(tb-notice)', function(obj){
     var data = obj.data;
     if(obj.event === 'del'){
-        layer.confirm('确定删除此用户？', function(index){
+        layer.confirm('确定删除此消息？', function(index){
           var id = obj.data.id;
           $.ajax({
             type: "GET",
