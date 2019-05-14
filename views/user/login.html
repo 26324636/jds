@@ -93,14 +93,13 @@
 
       //提交
       form.on('submit(LAY-user-login-submit)', function (obj) {
-        console.log(obj)
         //请求登入接口
         admin.req({
           url: layui.setter.request_url + '/User/login' //实际使用请改成服务端真实接口
             ,
           data: obj.field,
           done: function (res) {
-            // console.log(res)
+            console.log(res)
 
             //登入成功的提示与跳转
             if (res.status == -1) {
@@ -116,6 +115,7 @@
                 time: 1000
               });
             } else if (res.status == 1) {
+
               layer.msg('登入成功', {
                 offset: '15px',
                 icon: 1,

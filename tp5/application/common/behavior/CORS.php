@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Gaoy
- * Date: 2017/12/22
- * Time: 16:13
- */
+
 namespace app\index\behavior;
 
 use think\Response;

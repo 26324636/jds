@@ -24,7 +24,18 @@ layui.define(function(exports){
   admin.events.logout = function(){
     //执行退出接口
     admin.exit(function(){
+      $.ajax({
+        type: "GET",
+        dataType:"text",
+        url: layui.setter.request_url + "/User/login_out",
+        data: {
+        },
+        async: true,
+        success: function(data) {
+        }
+      })
       sessionStorage.clear();
+     
       location.href = 'user/login.html';
     });
   };
