@@ -20,7 +20,7 @@ class Notice extends Base
             $limit = $_GET['limit'];
 
             //分页
-            $list = $notice->page($page,$limit)->select();
+            $list = $notice->page($page,$limit)->order('input_time desc')->select();
             $arr['code'] = '0';
             $arr['data'] = $list;
             $arr['count'] = $count;

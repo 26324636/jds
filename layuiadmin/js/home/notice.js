@@ -18,10 +18,10 @@
       {type: 'numbers',title:'No.'}
       ,{field: 'title', title: '标题',align: 'center'}
       ,{field: 'content', title: '内容',align: 'center'}
-      ,{field: 'type', title: '类型',align: 'center'}
-      ,{field: 'input_NO', title: '发布人',align: 'center'}
-      ,{field: 'input_time', title: '发布时间',align: 'center'}
-      ,{title: '操作',  align: 'center', toolbar: '#table-useradmin-admin'}
+      ,{field: 'type', title: '类型',align: 'center',width:120}
+      ,{field: 'input_NO', title: '发布人',align: 'center',width:120}
+      ,{field: 'input_time', title: '发布时间',align: 'center',width:180}
+      ,{title: '操作',  align: 'center', toolbar: '#table-useradmin-admin',width:180}
     ]]
     ,text: '对不起，加载出现异常！'
   });
