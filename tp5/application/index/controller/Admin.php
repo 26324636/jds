@@ -131,7 +131,7 @@ class Admin extends Base
 		echo json_encode($data);
     }
     
-    //管理员编辑，返回某个用户的信息
+  //管理员编辑，返回某个用户的信息
 	public function user_info(){
 		//判断是否是管理员
 		if(!Base::is_admin()){
@@ -147,7 +147,7 @@ class Admin extends Base
 		echo json_encode($data);
     }
     
-    //管理员编辑，保存某个用户的信息
+  //管理员编辑，保存某个用户的信息
 	public function user_update(){
 		//判断是否是管理员
 		if(!Base::is_admin()){
@@ -174,7 +174,7 @@ class Admin extends Base
 		echo json_encode($data);
     }
     
-    //管理员重置某个人的密码
+  //管理员重置某个人的密码
 	public  function user_resetPwd(){
 		//判断是否是管理员
 		if(!Base::is_admin()){
