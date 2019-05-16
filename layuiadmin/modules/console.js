@@ -195,7 +195,7 @@ layui.define(function(exports){
       ,page: true
       ,cols: [[
         {type: 'numbers', fixed: 'left'}
-        ,{field: 'title', title: '标题', minWidth: 300, templet: '<div><a href="https://www.baidu.com/s?wd={{ d.title }}" target="_blank" class="layui-table-link">{{ d.title }}</div>'}
+        ,{field: 'title', title: '标题', minWidth: 300, templet: '<div><a target="_blank" class="layui-table-link">{{ d.title }}</div>'}
         ,{field: 'publisher', title: '发布人', minWidth: 120, sort: true}
         ,{field: 'pubDate', title: '发布时间', sort: true}
       ]]
@@ -210,7 +210,7 @@ layui.define(function(exports){
       ,cellMinWidth: 120
       ,cols: [[
         {type: 'numbers', fixed: 'left'}
-        ,{field: 'title', title: '标题', minWidth: 300, templet: '<div><a href="{{ d.href }}" target="_blank" class="layui-table-link">{{ d.title }}</div>'}
+        ,{field: 'title', title: '标题', minWidth: 300, templet: '<div><a href="javascript:void(0);" onclick="notice()"  target="_blank" class="layui-table-link">{{ d.title }}</div>'}
         ,{field: 'publisher', title: '发布人', minWidth: 120, sort: true}
         ,{field: 'channel', title: '类别'}
         ,{field: 'pubDate', title: '发布时间', sort: true}
@@ -221,3 +221,39 @@ layui.define(function(exports){
   
   exports('console', {})
 });
+
+///////////////////////////////////////////////////////////////////////////////////////
+layui.config({
+    base: '../../layuiadmin/' //静态资源所在路径
+  }).extend({
+    index1: 'lib/index' //主入口模块
+  }).use(['index'], function(){
+    var $ = layui.$
+    ,admin = layui.admin
+    ,element = layui.element
+    ,router = layui.router();
+    element.render();
+    })
+    function notice() {
+    
+        layer.closeAll();
+        layer.open({
+          type: 1
+          ,title: false
+          ,closeBtn: false
+          ,area: '300px;'
+          ,shade: 0.8
+          ,id: 'LAY_layuipro'
+          ,btn: ['确认', '提出建议']
+          ,btnAlign: 'c'
+          ,moveType: 1 //拖拽模式，0或者1
+          ,content: '<div style="padding: 50px; line-height: 22px; background-color: #393D49; color: #fff; font-weight: 300;">在月报的填写中，需要将商务及技术总监明确成gad内部的人员<br>不能填写“外援”等非gad人员<br><br>该部分的归属也将按照实际填写的总监归属来切分产值<br><br>商务总监中再切分总监及运营的归属不同，半年度统一梳理一次<br><br>同时WB子项的拓展及签订公司也按实际情况对应gad内部公司归属，而非统一填写“外援”</div>'
+          ,success: function(layero){
+            var btn = layero.find('.layui-layer-btn');
+            btn.find('.layui-layer-btn0').attr({
+              href: 'http://www.layui.com/'
+              ,target: '_blank'
+            });
+          }
+        });
+      }
