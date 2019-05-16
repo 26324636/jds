@@ -78,12 +78,13 @@
             <script type="text/html" id="yuebao_defend">
               <input type="text" autocomplete="off" style="width:110px" class="yuebao_defend_cont">
             </script>
-            <!-- 选择框模板 -->
+            <!-- 项目来源模板 -->
             <script type="text/html" id="project_source">
-              <select class="layui-form project_source_cont" name="xmly" lay-filter="xmly">
-                <option value="0"> </option>
-               
-              </select>
+              <div class="layui-form" lay-filter="xmly">
+                <select class="layui-form project_source_cont" name="xmly">
+                  <option value="0"> </option>
+                </select>
+              </div>
             </script>
             <!-- 省模板 -->
             <script type="text/html" id="provinceTpl">
@@ -101,9 +102,260 @@
                 <option value="0"> </option>
               </select>
             </script>
-            <!-- 时间模板 -->
-            <script type="text/html" id="timeTpl">
-              <input type="text" style="width:130px" class="sign_time">
+            <!-- 项目等级模板 -->
+            <script type="text/html" id="xmdj">
+              <div class="layui-form" lay-filter="xmdj">
+                <select class="xmdj_cont">
+                  <option value="0"> </option>
+                </select>
+              </div>
+            </script>
+            <!-- 合同签订状态模板 -->
+            <script type="text/html" id="htqdzt">
+              <div class="layui-form" lay-filter="htqdzt">
+                <select class="htqdzt_cont">
+                  <option value="0"> </option>
+                </select>
+              </div>
+            </script>
+            <!-- 合同签订时间模板 -->
+            <script type="text/html" id="htqdsj">
+              <input type="text" style="width:130px" class="htqdsj_time">
+            </script>
+            <!-- 合同建筑面积数模板 -->
+            <script type="text/html" id="htjzmjs">
+              <input type="number" step="0.1" min="0" style="width:110px" class="htjzmjs_cont" data-id="{{d.id}}"
+                value="{{d.htjzmjs}}">
+            </script>
+            <!-- 合同建筑面积单位模板 -->
+            <script type="text/html" id="htjzmjdw">
+              <input type="text" style="width:110px;background:#fff;border:1px solid #A9A9A9" class="htjzmjs_cont"
+                value="平方米" disabled>
+            </script>
+            <!-- 产值前置面积类型模板 -->
+            <script type="text/html" id="czqzmjlx">
+              <div class="layui-form" lay-filter="czqzmjlx">
+                <select class="czqzmjlx_cont">
+                  <option value="0"> </option>
+                </select>
+              </div>
+            </script>
+            <!-- 产值前置面积(万方)模板 -->
+            <script type="text/html" id="czqzmj">
+              <input type="number" step="0.0001" min="0" style="width:120px" class="czqzmj_cont" data-id="{{d.id}}"
+                value="{{d.czqzmj}}">
+            </script>
+            <!-- 子项原始合同额(万)模板 -->
+            <script type="text/html" id="zxyshte">
+              <input type="number" step="0.000001" min="0" style="width:120px" class="zxyshte_cont" data-id="{{d.id}}"
+                value="{{d.zxyshte}}">
+            </script>
+            <!-- 子项合同结算额(万)模板 -->
+            <script type="text/html" id="zxhtzse">
+              <input type="number" step="0.000001" min="0" style="width:120px" class="zxhtzse_cont" data-id="{{d.id}}"
+                value="{{d.zxhtzse}}">
+            </script>
+            <!-- 子项外包合同额(万)模板 -->
+            <script type="text/html" id="zxwbhte">
+              <input type="number" step="0.000001" min="0" style="width:120px" class="zxwbhte_cont" data-id="{{d.id}}"
+                value="{{d.zxwbhte}}">
+            </script>
+            <!-- 结构超限模板 -->
+            <script type="text/html" id="jgcx">
+              <div class="layui-form" lay-filter="jgcx">
+                <select class="jgcx_cont">
+                  <option value="0"> </option>
+                </select>
+              </div>
+            </script>
+            <!-- 收款切分项目类型模板 -->
+            <script type="text/html" id="skqfxmlx">
+              <div class="layui-form" lay-filter="skqfxmlx">
+                <select class="skqfxmlx_cont">
+                  <option value="0"> </option>
+                </select>
+              </div>
+            </script>
+            <!-- 设计阶段组成模板 -->
+            <script type="text/html" id="sjjdzc">
+              <div class="layui-form" lay-filter="sjjdzc">
+                <select class="sjjdzc_cont">
+                  <option value="0"> </option>
+                </select>
+              </div>
+            </script>
+            <!-- 合同签订公司模板 -->
+            <script type="text/html" id="htqdgs">
+              <div class="layui-form" lay-filter="htqdgs">
+                <select class="htqdgs_cont">
+                  <option value="0"> </option>
+                </select>
+              </div>
+            </script>
+            <!-- 拓展公司模板 -->
+            <script type="text/html" id="tzgs">
+              <div class="layui-form" lay-filter="tzgs">
+                <select class="tzgs_cont">
+                  <option value="0"> </option>
+                </select>
+              </div>
+            </script>
+            <!-- 是单专业/全专业扩初项目模板 -->
+            <script type="text/html" id="kcxmlx">
+              <div class="layui-form" lay-filter="kcxmlx">
+                <select class="kcxmlx_cont">
+                  <option value="0"> </option>
+                </select>
+              </div>
+            </script>
+            <!-- 方案扩初二合一报批模板 -->
+            <script type="text/html" id="fakcehybp">
+              <div class="layui-form" lay-filter="fakcehybp">
+                <select class="fakcehybp_cont">
+                  <option value="0"> </option>
+                  <option value="1">&nbsp;</option>
+                  <option value="2">是</option>
+                </select>
+              </div>
+            </script>
+            <!-- 项目进度模板 -->
+            <script type="text/html" id="xmjd">
+              <div class="layui-form" lay-filter="xmjd">
+                <select class="xmjd_cont">
+                  <option value="0"> </option>
+                </select>
+              </div>
+            </script>
+            <!-- 项目进度模板最新 -->
+            <script type="text/html" id="xmjdnew">
+              <div class="layui-form" lay-filter="xmjdnew">
+                <select class="xmjdnew_cont">
+                  <option value="0"> </option>
+                </select>
+              </div>
+            </script>
+            <!-- 起始日期-方案模板 -->
+            <script type="text/html" id="qsrq_fa">
+              <input type="text" style="width:130px" class="qsrq_fa_time">
+            </script>
+            <!-- 终止日期-方案模板 -->
+            <script type="text/html" id="zzrq_fa">
+              <input type="text" style="width:130px" class="zzrq_fa_time">
+            </script>
+            <!-- 参与专业-方案模板 -->
+            <script type="text/html" id="cyzy_fa">
+              <div class="layui-form" lay-filter="cyzy_fa">
+                <select class="cyzy_fa_cont">
+                  <option value="0"> </option>
+                </select>
+              </div>
+            </script>
+            <!-- 起始日期-扩初模板 -->
+            <script type="text/html" id="qsrq_kc">
+              <input type="text" style="width:130px" class="qsrq_kc_time">
+            </script>
+            <!-- 终止日期-扩初模板 -->
+            <script type="text/html" id="zzrq_kc">
+              <input type="text" style="width:130px" class="zzrq_kc_time">
+            </script>
+            <!-- 参与专业-扩初模板 -->
+            <script type="text/html" id="cyzy_kc">
+              <div class="layui-form" lay-filter="cyzy_kc">
+                <select class="cyzy_kc_cont">
+                  <option value="0"> </option>
+                </select>
+              </div>
+            </script>
+            <!-- 起始日期-施工图模板 -->
+            <script type="text/html" id="qsrq_sgt">
+              <input type="text" style="width:130px" class="qsrq_sgt_time">
+            </script>
+            <!-- 终止日期-施工图模板 -->
+            <script type="text/html" id="zzrq_sgt">
+              <input type="text" style="width:130px" class="zzrq_sgt_time">
+            </script>
+            <!-- 参与专业-施工图模板 -->
+            <script type="text/html" id="cyzy_sgt">
+              <div class="layui-form" lay-filter="cyzy_sgt">
+                <select class=" cyzy_sgt_cont">
+                  <option value="0"> </option>
+                </select>
+              </div>
+            </script>
+            <!-- 起始日期-后期模板 -->
+            <script type="text/html" id="qsrq_hq">
+              <input type="text" style="width:130px" class="qsrq_hq_time">
+            </script>
+            <!-- 终止日期-后期模板 -->
+            <script type="text/html" id="zzrq_hq">
+              <input type="text" style="width:130px" class="zzrq_hq_time">
+            </script>
+            <!-- 参与专业-后期模板 -->
+            <script type="text/html" id="cyzy_hq">
+              <div class="layui-form" lay-filter="cyzy_hq">
+                <select class="cyzy_hq_cont">
+                  <option value="0"> </option>
+                </select>
+              </div>
+            </script>
+            <!-- 规划景观BIM标记模板 -->
+            <script type="text/html" id="ghjgbim">
+              <div class="layui-form" lay-filter="ghjgbim">
+                <select class=" ghjgbim_cont">
+                  <option value="0"> </option>
+                </select>
+              </div>
+            </script>
+             <!-- 截止上年年末已完成工作量比例--方案模板 -->
+             <script type="text/html" id="jzsbnmywcgzlbl_fa">
+              <input type="text" style="width:250px;background:#fff;border:1px solid #A9A9A9" class="htjzmjs_cont"
+                value="0" disabled>
+            </script>
+             <!-- 截止上年年末已完成工作量比例--扩初模板 -->
+             <script type="text/html" id="jzsbnmywcgzlbl_kc">
+              <input type="text" style="width:250px;background:#fff;border:1px solid #A9A9A9" class="htjzmjs_cont"
+                value="0" disabled>
+            </script>
+             <!-- 截止上年年末已完成工作量比例--施工图模板 -->
+             <script type="text/html" id="jzsbnmywcgzlbl_sgt">
+              <input type="text" style="width:250px;background:#fff;border:1px solid #A9A9A9" class="htjzmjs_cont"
+                value="0" disabled>
+            </script>
+             <!-- 截止上年年末已完成工作量比例--后期服务模板 -->
+             <script type="text/html" id="jzsbnmywcgzlbl_hqfw">
+              <input type="text" style="width:250px;background:#fff;border:1px solid #A9A9A9" class="htjzmjs_cont"
+                value="0" disabled>
+            </script>
+            <!-- 累计至提报日期已完成工作量比例--方案模板 -->
+            <script type="text/html" id="ljztbrqywcgzlbl_fa">
+              <input type="number" step="0.0001" min="0" style="width:250px" class="ljztbrqywcgzlbl_fa_cont" data-id="{{d.id}}"
+                value="{{d.ljztbrqywcgzlbl_fa}}">
+            </script>
+             <!-- 累计至提报日期已完成工作量比例--扩初模板 -->
+             <script type="text/html" id="ljztbrqywcgzlbl_kc">
+              <input type="number" step="0.0001" min="0" style="width:250px" class="ljztbrqywcgzlbl_kc_cont" data-id="{{d.id}}"
+                value="{{d.ljztbrqywcgzlbl_kc}}">
+            </script>
+             <!-- 累计至提报日期已完成工作量比例--施工图模板 -->
+             <script type="text/html" id="ljztbrqywcgzlbl_sgt">
+              <input type="number" step="0.0001" min="0" style="width:250px" class="ljztbrqywcgzlbl_sgt_cont" data-id="{{d.id}}"
+                value="{{d.ljztbrqywcgzlbl_sgt}}">
+            </script>
+             <!-- 累计至提报日期已完成工作量比例--后期服务模板 -->
+             <script type="text/html" id="ljztbrqywcgzlbl_hqfw">
+              <input type="number" step="0.0001" min="0" style="width:250px" class="ljztbrqywcgzlbl_hqfw_cont" data-id="{{d.id}}"
+                value="{{d.ljztbrqywcgzlbl_hqfw}}">
+            </script>
+            <!-- 本年预计完成合同额判断标准模板 -->
+            <script type="text/html" id="bnyjwchtepdbz">
+              <div class="layui-form" lay-filter="bnyjwchtepdbz">
+                <select class=" bnyjwchtepdbz_cont">
+                  <option value="0">&nbsp;</option>
+                  <option value="1">A</option>
+                  <option value="2">B</option>
+                  <option value="3">C</option>
+                </select>
+              </div>
             </script>
           </table>
           <div class="yuebao_btn">
