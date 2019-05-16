@@ -23,7 +23,7 @@ layui.config({
     
         window.viewObj = {
 			tbData: [{
-                id:0,projectNumber:'',projectName:'',subitemNumber:'',subitemName:''}
+                id:0,projectNumber:'',projectName:'',subitemNumber:'',subitemName:'',swzj:''}
                 ,{id:1,projectNumber:'',projectName:'',subitemNumber:'',subitemName:''}
                 ,{id:2,projectNumber:'',projectName:'',subitemNumber:'',subitemName:''}
                 ,{id:3,projectNumber:'',projectName:'',subitemNumber:'',subitemName:''}
@@ -63,13 +63,17 @@ layui.config({
             , {title: '项目来源',width: 220,templet: '#project_source'}
             , {title: '省份',width: 150,templet: '#provinceTpl',hide:hideDetail}
             , {title: '城市',width: 120,templet: '#cityTpl',hide:hideDetail}
-            , {title: '合同签订时间',width: 140,templet: '#timeTpl'}
             , {title: '项目等级',width: 120,templet: '#inputTpl',hide:hideDetail}
             , {title: '合同签订状态',width: 120,templet: '#inputTpl'}
+            , {title: '合同签订时间',width: 140,templet: '#timeTpl'}
+            , {title: '合同建筑面积数',width: 140,templet: '#timeTpl'}
+            , {title: '合同建筑面积单位',width: 140,templet: '#timeTpl'}
             , {title: '产值前置面积类型',width: 150,templet: '#inputTpl',hide:hideDetail}
             , {title: '产值前置面积(万方)',width: 150,templet: '#inputTpl',hide:hideDetail}
             , {title: '子项原始合同额(万)',width: 150,templet: '#inputTpl'}
             , {title: '子项合同结算额(万)',width: 150,templet: '#inputTpl'}
+            , {title: '周报合同额汇总',width: 150,templet: '#inputTpl'}
+            , {title: '合同额对比',width: 150,templet: '#inputTpl'}
             , {title: '子项外包合同额(万)',width: 150,templet: '#inputTpl'}
             , {title: '结构超限',width: 120,templet: '#inputTpl'}
             , {title: '收款切分项目类型',width: 120,templet: '#inputTpl'}
@@ -101,16 +105,26 @@ layui.config({
             , {title: '累计至提报日期已完成工作量比例--扩初',width: 260,templet: '#inputTpl'}
             , {title: '累计至提报日期已完成工作量比例--施工图',width: 280,templet: '#inputTpl'}
             , {title: '累计至提报日期已完成工作量比例--后期服务',width: 280,templet: '#inputTpl'}
+            , {title: '本年预计完成合同额判断标准',width: 280,templet: '#inputTpl'}
             , {title: '预计至本年年末可完成工作量比例--方案',width: 260,templet: '#inputTpl'}
             , {title: '预计至本年年末可完成工作量比例--扩初',width: 260,templet: '#inputTpl'}
             , {title: '预计至本年年末可完成工作量比例--施工图',width: 280,templet: '#inputTpl'}
             , {title: '预计至本年年末可完成工作量比例--后期服务',width: 280,templet: '#inputTpl'}
+            , {title: '是否长期暂停',width: 120,templet: '#inputTpl'}
+            , {title: '青岛项目是否做供暖',width: 120,templet: '#inputTpl'}
             , {title: '专业负责人-建筑-扩初及以后阶段',width: 260,templet: '#inputTpl'}
             , {title: '专业负责人-结构',width: 120,templet: '#inputTpl'}
             , {title: '专业负责人-给排水',width: 120,templet: '#inputTpl'}
             , {title: '专业负责人-电气',width: 120,templet: '#inputTpl'}
             , {title: '专业负责人-暖通',width: 120,templet: '#inputTpl'}
-            , {title: '周报维护人',width: 120,templet: '#inputTpl'}]
+            , {title: '周报维护人',width: 120,templet: '#inputTpl'}
+            , {title: '待收款已开票',width: 120,templet: '#inputTpl'}
+            , {title: '待收款待开票',width: 120,templet: '#inputTpl'}
+            , {title: '未到收款节点',width: 120,templet: '#inputTpl'}
+            , {title: '往年已收款',width: 120,templet: '#inputTpl'}
+            , {title: '当年已收款',width: 120,templet: '#inputTpl'}
+            , {title: '收款总额',width: 120,templet: '#inputTpl'}
+            , {title: '辅运营',width: 120,templet: '#inputTpl'}]
         ],
         done: function (res, curr, count) {         
             $('.layui-table th').css({
@@ -145,6 +159,8 @@ layui.config({
                     yuebao_defend(index)
                 })
             });
+            //加载项目来源
+            loadXmly();
             //加载省
             loadProvince();
             //加载时间表格
@@ -156,18 +172,27 @@ layui.config({
             }); 
             //项目编号改变后保存到缓存
             $('.project_num_cont').each(function (index,v) {
+                var id = $(this)[0].dataset.id;
                 $(this).change(function(){
-                    console.log(v)
-                    console.log($(this)[0].dataset.id)
-                    console.log(viewObj.tbData)
-                    var id = $(this)[0].dataset.id
+                    // console.log(v)
+                    // console.log($(this)[0].dataset.id)
+                    // console.log(viewObj.tbData)
+                    var tbtr = $('.layui-table');
+                    console.log(tbtr);
                     viewObj.tbData[id].projectNumber = $(this)[0].value;
                 })
             }); 
             //项目名称改变后保存到缓存
             $('.project_name_cont').each(function (index,v) {
+                // console.log($(this));
+                var id = $(this)[0].dataset.id;
+                // var project_num = viewObj.tbData[id].projectNumber;
+                // if(project_num == ""){
+                //     // console.log('空的');
+                //     $(this)[0].disabled = true;
+                // }
                 $(this).change(function(){
-                    var id = $(this)[0].dataset.id
+                    
                     viewObj.tbData[id].projectName = $(this)[0].value;
                 })
             }); 
@@ -189,6 +214,8 @@ layui.config({
             
         }
     });
+
+  
    //增加行
     $("#addTable").click(function(){
        var oldData = viewObj.tbData;
@@ -287,26 +314,32 @@ layui.config({
             data : oldData
         });
     })
+    $("#saveBtn").click(function(){
+        var oldData = viewObj.tbData;
+        console.log(oldData);
+    });
     //商务总监弹出选择框
     function buss_people(index){
         var tableSelect = layui.tableSelect;
         tableSelect.render({
             elem: '.buss_people_cont',
             page:true,
-            // checkedKey: 'id',
+            searchKey: 'name',	
+	        searchPlaceholder: '名字搜索',
             table: {
-                url: layui.setter.base + 'json/yuebao/buss_people.js',
+                url: layui.setter.request_url + '/Yuebao/swzj_list',
                 cols: [[
                     { type: 'numbers',title: 'No.'},
-                    { field: 'id', title: '员工编号',width: 100,height: 25},
-                    { field: 'name', title: '员工编号',width: 100,height: 25},
-                    { field: 'company', title: '员工编号',width: 100,height: 25},
-                    { field: 'department', title: '员工编号',width: 100,height: 25},
-                    { field: 'keyInfo', title: '员工编号',width: 140,height: 25}
+                    { field: 'number', title: '员工编号',width: 100,height: 25},
+                    { field: 'name', title: '姓名',width: 100,height: 25},
+                    { field: 'corporation', title: '公司',width: 100,height: 25},
+                    { field: 'department', title: '部门',width: 100,height: 25},
+                    { field: 'keyhint', title: '关键信息',width: 140,height: 25}
                 ]]
             },
             done: function (elem, data) {
                 elem[index].value = data.data[0].name;
+                
             }
         })
     }
@@ -315,15 +348,17 @@ layui.config({
         var tableSelect = layui.tableSelect;
         tableSelect.render({
             elem: '.design_people_cont',
+            searchKey: 'name',	
+	        searchPlaceholder: '名字搜索',
             table: {
-                url: layui.setter.base + 'json/yuebao/buss_people.js',
+                url: layui.setter.request_url + '/Yuebao/sjzj_list',
                 cols: [[
                     { type: 'numbers',title: 'No.'},
-                    { field: 'id', title: '员工编号',width: 100,height: 25},
-                    { field: 'name', title: '员工编号',width: 100,height: 25},
-                    { field: 'company', title: '员工编号',width: 100,height: 25},
-                    { field: 'department', title: '员工编号',width: 100,height: 25},
-                    { field: 'keyInfo', title: '员工编号',width: 140,height: 25}
+                    { field: 'number', title: '员工编号',width: 100,height: 25},
+                    { field: 'name', title: '姓名',width: 100,height: 25},
+                    { field: 'corporation', title: '公司',width: 100,height: 25},
+                    { field: 'department', title: '部门',width: 100,height: 25},
+                    { field: 'keyhint', title: '关键信息',width: 140,height: 25}
                 ]]
             },
             done: function (elem, data) {
@@ -336,15 +371,17 @@ layui.config({
         var tableSelect = layui.tableSelect;
         tableSelect.render({
             elem: '.project_leader_cont',
+            searchKey: 'name',	
+	        searchPlaceholder: '名字搜索',
             table: {
-                url: layui.setter.base + 'json/yuebao/buss_people.js',
+                url: layui.setter.request_url + '/Yuebao/xmfzr_list',
                 cols: [[
                     { type: 'numbers',title: 'No.'},
-                    { field: 'id', title: '员工编号',width: 100,height: 25},
-                    { field: 'name', title: '员工编号',width: 100,height: 25},
-                    { field: 'company', title: '员工编号',width: 100,height: 25},
-                    { field: 'department', title: '员工编号',width: 100,height: 25},
-                    { field: 'keyInfo', title: '员工编号',width: 140,height: 25}
+                    { field: 'number', title: '员工编号',width: 100,height: 25},
+                    { field: 'name', title: '姓名',width: 100,height: 25},
+                    { field: 'corporation', title: '公司',width: 100,height: 25},
+                    { field: 'department', title: '部门',width: 100,height: 25},
+                    { field: 'keyhint', title: '关键信息',width: 140,height: 25}
                 ]]
             },
             done: function (elem, data) {
@@ -353,22 +390,22 @@ layui.config({
         })
     }
     //月报维护人弹出选择框
-     //商务总监弹出选择框
      function yuebao_defend(index){
         var tableSelect = layui.tableSelect;
         tableSelect.render({
             elem: '.yuebao_defend_cont',
+            searchKey: 'name',	
+	        searchPlaceholder: '名字搜索',
             page:true,
-            // checkedKey: 'id',
             table: {
-                url: layui.setter.base + 'json/yuebao/buss_people.js',
+                url: layui.setter.request_url + '/Yuebao/ybwhr_list',
                 cols: [[
                     { type: 'numbers',title: 'No.'},
-                    { field: 'id', title: '员工编号',width: 100,height: 25},
-                    { field: 'name', title: '员工编号',width: 100,height: 25},
-                    { field: 'company', title: '员工编号',width: 100,height: 25},
-                    { field: 'department', title: '员工编号',width: 100,height: 25},
-                    { field: 'keyInfo', title: '员工编号',width: 140,height: 25}
+                    { field: 'number', title: '员工编号',width: 100,height: 25},
+                    { field: 'name', title: '姓名',width: 100,height: 25},
+                    { field: 'corporation', title: '公司',width: 100,height: 25},
+                    { field: 'department', title: '部门',width: 100,height: 25},
+                    { field: 'keyhint', title: '关键信息',width: 140,height: 25}
                 ]]
             },
             done: function (elem, data) {
@@ -387,6 +424,33 @@ layui.config({
     //     alert(area);
     // }
 
+    //加载项目来源
+    function loadXmly(){
+        var xmly = $('.project_source_cont');
+        form.on('select(xmly)', function(data) {
+            var currentLine = $(this).closest('tr')[0].dataset.index;
+            console.log(currentLine)
+            $.ajax({
+                type: "GET",
+                dataType:"text",
+                url: layui.setter.request_url + "/Yuebao/xmly_list",
+                data: {
+                },
+                async: true,
+                success: function(data) {
+                    var data = JSON.parse(data).data;
+                    console.log(data)
+                    for(var a in data){
+                        xmly[currentLine].innerHTML += "<option value="+data[a].id+">"+data[a].value+"</option>";
+                    }
+                    console.log(xmly)
+                    
+                }
+            })
+            form.render();
+        })
+        
+    }
     //加载省
     function loadProvince() {
         var areaData = Area;
