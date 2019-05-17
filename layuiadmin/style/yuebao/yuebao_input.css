@@ -10,14 +10,21 @@ table{
     padding: 0;
     margin-top: -20px;
 }
-.layui-fluid .layui-table-cell {
-    height: 35px;
+.layui-fluid .layui-table-cell  {
+    /* height: 35px; */
     line-height: 35px;
     padding: 0 5px ;
     position: relative;
     box-sizing: border-box;
     text-align: center;
     overflow: visible;
+    height:auto;
+   overflow:visible;
+  text-overflow:inherit;
+ white-space:normal;
+}
+.layui-table-header .layui-table-cell{
+    line-height: 25px;
 }
 .layui-fluid .layui-table-cell input{
     height: 28px;

@@ -262,4 +262,149 @@ class Yuebao
 
         echo json_encode($arr);
     }
+    //获取专业负责人-建筑-扩初及以后阶段人员
+    public function zyfzr_jz_kc_list(){
+        $page = $_GET['page'];
+        $limit = $_GET['limit'];
+        //判断是否name为空
+        $name = empty($_GET['name']) ?"":$_GET['name'];
+
+        //au_user表与tb_user表连接
+        $zyfzr_jz_kc = db('tb_user')
+         -> where([
+                ['name', 'like','%'.$name.'%']
+            ])
+         -> order('number')
+         -> field('number,name,corporation,	department,keyhint');
+         
+        $count = $zyfzr_jz_kc ->count();
+        $list = $zyfzr_jz_kc->page($page,$limit)->select();
+
+        $arr['code'] = '0';
+        $arr['data'] = $list;
+        $arr['count'] = $count;
+
+        echo json_encode($arr);
+    }
+
+     //获取专业负责人-结构
+     public function zyfzr_jg_list(){
+        $page = $_GET['page'];
+        $limit = $_GET['limit'];
+        //判断是否name为空
+        $name = empty($_GET['name']) ?"":$_GET['name'];
+
+        //au_user表与tb_user表连接
+        $zyfzr_jg = db('tb_user')
+         -> where([
+                ['name', 'like','%'.$name.'%']
+            ])
+         -> order('number')
+         -> field('number,name,corporation,	department,keyhint');
+         
+        $count = $zyfzr_jg ->count();
+        $list = $zyfzr_jg->page($page,$limit)->select();
+
+        $arr['code'] = '0';
+        $arr['data'] = $list;
+        $arr['count'] = $count;
+
+        echo json_encode($arr);
+    }
+    //获取专业负责人-给排水
+    public function zyfzr_gps_list(){
+        $page = $_GET['page'];
+        $limit = $_GET['limit'];
+        //判断是否name为空
+        $name = empty($_GET['name']) ?"":$_GET['name'];
+
+        //au_user表与tb_user表连接
+        $zyfzr_gps = db('tb_user')
+         -> where([
+                ['name', 'like','%'.$name.'%']
+            ])
+         -> order('number')
+         -> field('number,name,corporation,	department,keyhint');
+         
+        $count = $zyfzr_gps ->count();
+        $list = $zyfzr_gps->page($page,$limit)->select();
+
+        $arr['code'] = '0';
+        $arr['data'] = $list;
+        $arr['count'] = $count;
+
+        echo json_encode($arr);
+    }
+    //获取专业负责人-电气
+    public function zyfzr_dq_list(){
+        $page = $_GET['page'];
+        $limit = $_GET['limit'];
+        //判断是否name为空
+        $name = empty($_GET['name']) ?"":$_GET['name'];
+
+        //au_user表与tb_user表连接
+        $zyfzr_dq = db('tb_user')
+         -> where([
+                ['name', 'like','%'.$name.'%']
+            ])
+         -> order('number')
+         -> field('number,name,corporation,	department,keyhint');
+         
+        $count = $zyfzr_dq ->count();
+        $list = $zyfzr_dq->page($page,$limit)->select();
+
+        $arr['code'] = '0';
+        $arr['data'] = $list;
+        $arr['count'] = $count;
+
+        echo json_encode($arr);
+    }
+    //获取专业负责人-暖通
+    public function zyfzr_nt_list(){
+        $page = $_GET['page'];
+        $limit = $_GET['limit'];
+        //判断是否name为空
+        $name = empty($_GET['name']) ?"":$_GET['name'];
+
+        //au_user表与tb_user表连接
+        $zyfzr_nt = db('tb_user')
+         -> where([
+                ['name', 'like','%'.$name.'%']
+            ])
+         -> order('number')
+         -> field('number,name,corporation,	department,keyhint');
+         
+        $count = $zyfzr_nt ->count();
+        $list = $zyfzr_nt->page($page,$limit)->select();
+
+        $arr['code'] = '0';
+        $arr['data'] = $list;
+        $arr['count'] = $count;
+
+        echo json_encode($arr);
+    }
+    //获取周报维护人
+    public function zbwhr_list(){
+        $page = $_GET['page'];
+        $limit = $_GET['limit'];
+        //判断是否name为空
+        $name = empty($_GET['name']) ?"":$_GET['name'];
+
+        //au_user表与tb_user表连接
+        $zbwhr = db('tb_user')
+         -> where([
+                ['name', 'like','%'.$name.'%']
+            ])
+         -> order('number')
+         -> field('number,name,corporation,	department,keyhint');
+         
+        $count = $zbwhr ->count();
+        $list = $zbwhr->page($page,$limit)->select();
+
+        $arr['code'] = '0';
+        $arr['data'] = $list;
+        $arr['count'] = $count;
+
+        echo json_encode($arr);
+    }
 }

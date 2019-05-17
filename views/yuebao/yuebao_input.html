@@ -45,22 +45,22 @@
             <!-- 项目编号输入框模板 -->
             <script type="text/html" id="project_num">
               <input type="text" style="width:110px" class="project_num_cont" data-id="{{d.id}}"
-                value="{{d.projectNumber}}">
+                value="{{d.xmbh}}">
             </script>
             <!-- 项目名字模板 -->
             <script type="text/html" id="project_name">
               <input type="text" style="width:110px" class="project_name_cont" data-id="{{d.id}}"
-                value="{{d.projectName}}">
+                value="{{d.xmmc}}">
             </script>
             <!-- 子项编号模板 -->
             <script type="text/html" id="subitem_num">
               <input type="text" style="width:110px" class="subitem_num_cont" data-id="{{d.id}}"
-                value="{{d.subitemNumber}}">
+                value="{{d.zxbh}}">
             </script>
             <!-- 子项名称模板 -->
             <script type="text/html" id="subitem_name">
               <input type="text" style="width:110px" class="subitem_name_cont" data-id="{{d.id}}"
-                value="{{d.subitemName}}">
+                value="{{d.zxmc}}">
             </script>
             <!-- 商务总监弹出选择框模板 -->
             <script type="text/html" id="buss_people">
@@ -151,9 +151,9 @@
                 value="{{d.zxyshte}}">
             </script>
             <!-- 子项合同结算额(万)模板 -->
-            <script type="text/html" id="zxhtzse">
-              <input type="number" step="0.000001" min="0" style="width:120px" class="zxhtzse_cont" data-id="{{d.id}}"
-                value="{{d.zxhtzse}}">
+            <script type="text/html" id="zxhtjse">
+              <input type="number" step="0.000001" min="0" style="width:120px" class="zxhtjse_cont" data-id="{{d.id}}"
+                value="{{d.zxhtjse}}">
             </script>
             <!-- 子项外包合同额(万)模板 -->
             <script type="text/html" id="zxwbhte">
@@ -306,45 +306,45 @@
                 </select>
               </div>
             </script>
-             <!-- 截止上年年末已完成工作量比例--方案模板 -->
-             <script type="text/html" id="jzsbnmywcgzlbl_fa">
+            <!-- 截止上年年末已完成工作量比例--方案模板 -->
+            <script type="text/html" id="jzsbnmywcgzlbl_fa">
               <input type="text" style="width:250px;background:#fff;border:1px solid #A9A9A9" class="htjzmjs_cont"
                 value="0" disabled>
             </script>
-             <!-- 截止上年年末已完成工作量比例--扩初模板 -->
-             <script type="text/html" id="jzsbnmywcgzlbl_kc">
+            <!-- 截止上年年末已完成工作量比例--扩初模板 -->
+            <script type="text/html" id="jzsbnmywcgzlbl_kc">
               <input type="text" style="width:250px;background:#fff;border:1px solid #A9A9A9" class="htjzmjs_cont"
                 value="0" disabled>
             </script>
-             <!-- 截止上年年末已完成工作量比例--施工图模板 -->
-             <script type="text/html" id="jzsbnmywcgzlbl_sgt">
+            <!-- 截止上年年末已完成工作量比例--施工图模板 -->
+            <script type="text/html" id="jzsbnmywcgzlbl_sgt">
               <input type="text" style="width:250px;background:#fff;border:1px solid #A9A9A9" class="htjzmjs_cont"
                 value="0" disabled>
             </script>
-             <!-- 截止上年年末已完成工作量比例--后期服务模板 -->
-             <script type="text/html" id="jzsbnmywcgzlbl_hqfw">
+            <!-- 截止上年年末已完成工作量比例--后期服务模板 -->
+            <script type="text/html" id="jzsbnmywcgzlbl_hqfw">
               <input type="text" style="width:250px;background:#fff;border:1px solid #A9A9A9" class="htjzmjs_cont"
                 value="0" disabled>
             </script>
             <!-- 累计至提报日期已完成工作量比例--方案模板 -->
             <script type="text/html" id="ljztbrqywcgzlbl_fa">
-              <input type="number" step="0.0001" min="0" style="width:250px" class="ljztbrqywcgzlbl_fa_cont" data-id="{{d.id}}"
-                value="{{d.ljztbrqywcgzlbl_fa}}">
+              <input type="number" step="0.0001" min="0" style="width:250px" class="ljztbrqywcgzlbl_fa_cont"
+                data-id="{{d.id}}" value="{{d.ljztbrqywcgzlbl_fa}}">
             </script>
-             <!-- 累计至提报日期已完成工作量比例--扩初模板 -->
-             <script type="text/html" id="ljztbrqywcgzlbl_kc">
-              <input type="number" step="0.0001" min="0" style="width:250px" class="ljztbrqywcgzlbl_kc_cont" data-id="{{d.id}}"
-                value="{{d.ljztbrqywcgzlbl_kc}}">
+            <!-- 累计至提报日期已完成工作量比例--扩初模板 -->
+            <script type="text/html" id="ljztbrqywcgzlbl_kc">
+              <input type="number" step="0.0001" min="0" style="width:250px" class="ljztbrqywcgzlbl_kc_cont"
+                data-id="{{d.id}}" value="{{d.ljztbrqywcgzlbl_kc}}">
             </script>
-             <!-- 累计至提报日期已完成工作量比例--施工图模板 -->
-             <script type="text/html" id="ljztbrqywcgzlbl_sgt">
-              <input type="number" step="0.0001" min="0" style="width:250px" class="ljztbrqywcgzlbl_sgt_cont" data-id="{{d.id}}"
-                value="{{d.ljztbrqywcgzlbl_sgt}}">
+            <!-- 累计至提报日期已完成工作量比例--施工图模板 -->
+            <script type="text/html" id="ljztbrqywcgzlbl_sgt">
+              <input type="number" step="0.0001" min="0" style="width:250px" class="ljztbrqywcgzlbl_sgt_cont"
+                data-id="{{d.id}}" value="{{d.ljztbrqywcgzlbl_sgt}}">
             </script>
-             <!-- 累计至提报日期已完成工作量比例--后期服务模板 -->
-             <script type="text/html" id="ljztbrqywcgzlbl_hqfw">
-              <input type="number" step="0.0001" min="0" style="width:250px" class="ljztbrqywcgzlbl_hqfw_cont" data-id="{{d.id}}"
-                value="{{d.ljztbrqywcgzlbl_hqfw}}">
+            <!-- 累计至提报日期已完成工作量比例--后期服务模板 -->
+            <script type="text/html" id="ljztbrqywcgzlbl_hqfw">
+              <input type="number" step="0.0001" min="0" style="width:250px" class="ljztbrqywcgzlbl_hqfw_cont"
+                data-id="{{d.id}}" value="{{d.ljztbrqywcgzlbl_hqfw}}">
             </script>
             <!-- 本年预计完成合同额判断标准模板 -->
             <script type="text/html" id="bnyjwchtepdbz">
@@ -357,6 +357,89 @@
                 </select>
               </div>
             </script>
+            <!-- 预计至本年年末可完成工作量比例--方案 -->
+            <script type="text/html" id="yjzbnmkwcgzlbl_fa">
+              <input type="number" step="0.0001" min="0" style="width:100%" class="yjzbnmkwcgzlbl_fa_cont"
+                data-id="{{d.id}}" value="{{d.yjzbnmkwcgzlbl_fa}}">
+            </script>
+            <!-- 预计至本年年末可完成工作量比例--扩初 -->
+            <script type="text/html" id="yjzbnmkwcgzlbl_kc">
+              <input type="number" step="0.0001" min="0" style="width:100%" class="yjzbnmkwcgzlbl_kc_cont"
+                data-id="{{d.id}}" value="{{d.yjzbnmkwcgzlbl_kc}}">
+            </script>
+            <!-- 预计至本年年末可完成工作量比例--施工图 -->
+            <script type="text/html" id="yjzbnmkwcgzlbl_sgt">
+              <input type="number" step="0.0001" min="0" style="width:100%" class="yjzbnmkwcgzlbl_sgt_cont"
+                data-id="{{d.id}}" value="{{d.yjzbnmkwcgzlbl_sgt}}">
+            </script>
+            <!-- 预计至本年年末可完成工作量比例--后期服务 -->
+            <script type="text/html" id="yjzbnmkwcgzlbl_hqfw">
+              <input type="number" step="0.0001" min="0" style="width:100%" class="yjzbnmkwcgzlbl_hqfw_cont"
+                data-id="{{d.id}}" value="{{d.yjzbnmkwcgzlbl_hqfw}}">
+            </script>
+             <!-- 是否长期暂停模板 -->
+             <script type="text/html" id="sfcqzt">
+              <div class="layui-form" lay-filter="sfcqzt">
+                <select class="sfcqzt_cont">
+                  <option value="0">&nbsp;</option>
+                  <option value="1">是</option>
+                </select>
+              </div>
+            </script>
+             <!-- 青岛项目是否做供暖模板 -->
+             <script type="text/html" id="qdxmsfzgn">
+              <div class="layui-form" lay-filter="qdxmsfzgn">
+                <select class="qdxmsfzgn_cont">
+                  <option value="0">&nbsp;</option>
+                  <option value="1">是</option>
+                </select>
+              </div>
+            </script>
+            <!-- 专业负责人-建筑-扩初及以后阶段弹出选择框模板 -->
+            <script type="text/html" id="zyfzr_jz_kc">
+              <input type="text" style="width:100%" class="zyfzr_jz_kc_cont">
+            </script>
+            <!--专业负责人-结构弹出选择框模板 -->
+            <script type="text/html" id="zyfzr_jg">
+              <input type="text" style="width:100%" class="zyfzr_jg_cont">
+            </script>
+            <!--专业负责人-给排水弹出选择框模板 -->
+            <script type="text/html" id="zyfzr_gps">
+              <input type="text" style="width:100%" class="zyfzr_gps_cont">
+            </script>
+             <!--专业负责人-电气弹出选择框模板 -->
+             <script type="text/html" id="zyfzr_dq">
+              <input type="text" style="width:100%" class="zyfzr_dq_cont">
+            </script>
+             <!--专业负责人-暖通弹出选择框模板 -->
+             <script type="text/html" id="zyfzr_nt">
+              <input type="text" style="width:100%" class="zyfzr_nt_cont">
+            </script>
+            <!--周报维护人选择框模板 -->
+            <script type="text/html" id="zbwhr">
+              <input type="text" style="width:100%" class="zbwhr_cont">
+            </script>
+            <!-- 代收款已开票模板 -->
+          <script type="text/html" id="dskykp">
+          </script>
+           <!-- 代收款待开票模板 -->
+           <script type="text/html" id="dskdkp">
+          </script>
+          <!-- 未到收款节点模板 -->
+          <script type="text/html" id="wdskjd">
+          </script>
+          <!-- 往年已收款模板 -->
+          <script type="text/html" id="wnysk">
+          </script>
+          <!-- 当年已收款模板 -->
+          <script type="text/html" id="dnysk">
+          </script>
+           <!-- 收款总额模板 -->
+           <script type="text/html" id="skze">
+           </script>
+           <!-- 辅运营模板 -->
+           <script type="text/html" id="fyy">
+           </script>
           </table>
           <div class="yuebao_btn">
             <input type="text" placeholder="请输入行数" class="layui-input line-input">
@@ -365,7 +448,7 @@
             <button class="layui-btn layui-btn-sm layui-btn-normal" id="saveBtn">保存</button>
             <button class="layui-btn layui-btn-sm layui-btn-normal" id="daochu">导出XLS</button>
           </div>
-
+          
         </div>
       </div>
     </div>
