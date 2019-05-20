@@ -209,14 +209,14 @@ layui.config({
             , {title: '项目名称',width: 120,fixed: 'left',templet: '#project_name',field:'xmmc',value:'xmmc'}
             , {title: '子项编号',width: 120,fixed: 'left',templet: '#subitem_num',field:'zxbh',value:'zxbh'}
             , {title: '子项名称',width: 120,fixed: 'left',templet: '#subitem_name',field:'zxmc',value:'zxmc'}
-            , {title: '商务总监',width: 120,templet: '#buss_people'}
-            , {title: '设计总监',width: 120,templet: '#design_people'}
-            , {title: '项目负责人',width: 120,templet: '#project_leader'}
-            , {title: '月报维护人',width: 120,templet: '#yuebao_defend'}
-            , {title: '项目来源',width: 220,templet: '#project_source'}
-            , {title: '省份',width: 150,templet: '#provinceTpl'}
-            , {title: '城市',width: 120,templet: '#cityTpl'}
-            , {title: '项目等级',width: 120,templet: '#xmdj'}
+            , {title: '商务总监',width: 120,templet: '#buss_people',field:'swzj',value:'swzj'}
+            , {title: '设计总监',width: 120,templet: '#design_people',field:'sjzj',value:'sjzj'}
+            , {title: '项目负责人',width: 120,templet: '#project_leader',field:'xmfzr',value:'xmfzr'}
+            , {title: '月报维护人',width: 120,templet: '#yuebao_defend',field:'ybwhr',value:'ybwhr'}
+            , {title: '项目来源',width: 220,templet: '#project_source',field:'xmly',value:'xmly'}
+            , {title: '省份',width: 150,templet: '#provinceTpl',field:'province',value:'province'}
+            , {title: '城市',width: 120,templet: '#cityTpl',field:'city',value:'city'}
+            , {title: '项目等级',width: 120,templet: '#xmdj',field:'xmdj',value:'xmdj'}
             , {title: '合同签订状态',width: 140,templet: '#htqdzt'}
             , {title: '合同签订时间',width: 140,templet: '#htqdsj'}
             , {title: '合同建筑面积数',width: 120,templet: '#htjzmjs'}
@@ -381,52 +381,18 @@ layui.config({
             loadCyzy_hq(); //加载参与专业-后期
             loadGhjgbim(); //加载规划景观BIM标记
 
-            //项目编号改变后保存到缓存
-            $('.project_num_cont').each(function (index,v) {
-                var id = $(this)[0].dataset.id;
-                $(this).change(function(){
-                    // console.log(v)
-                    // console.log($(this)[0].dataset.id)
-                    // console.log(viewObj.tbData)
-                    var tbtr = $('.layui-table');
-                    console.log(tbtr);
-                    viewObj.tbData[id].xmbh = $(this)[0].value;
-                })
-            }); 
-            //项目名称改变后保存到缓存
-            $('.project_name_cont').each(function (index,v) {
-                // console.log($(this));
-                var id = $(this)[0].dataset.id;
-                // var project_num = viewObj.tbData[id].projectNumber;
-                // if(project_num == ""){
-                //     // console.log('空的');
-                //     $(this)[0].disabled = true;
-                // }
-                $(this).change(function(){
-                    
-                    viewObj.tbData[id].xmmc = $(this)[0].value;
-                })
-            }); 
-            //子项编号改变后保存到缓存
-            $('.subitem_num_cont').each(function (index,v) {
-                $(this).change(function(){
-                    var id = $(this)[0].dataset.id
-                    viewObj.tbData[id].zxbh = $(this)[0].value;
-                })
-            }); 
-            //子项名称改变后保存到缓存
-            $('.subitem_name_cont').each(function (index,v) {
-                $(this).change(function(){
-                    var id = $(this)[0].dataset.id
-                    viewObj.tbData[id].zxmc = $(this)[0].value;
-                })
-            }); 
-            
+            saveXmbh(); //保存项目编号
+            saveXmmc(); //保存项目名称
+            saveZxbh(); //保存子项编号
+            saveZxmc(); //保持子项名称    
+            saveXmly(); //保存项目来源
+            saveCity(); //保存城市
+            saveXmdj(); //保存项目等级
             
         }
     });
 
-  
+   
    //增加行
     $("#addTable").click(function(){
        var oldData = viewObj.tbData;
@@ -543,6 +509,72 @@ layui.config({
         var oldData = viewObj.tbData;
         console.log(oldData);
     });
+    //保存项目等级
+    function saveXmdj(){
+        form.on('select(xmdj_cont)', function(data){
+            var index = data.elem.dataset.id;
+            var value = data.value;
+            console.log(value)
+            viewObj.tbData[index].xmdj = value;
+        });
+    }
+    //保存省份
+    function saveCity(){
+        form.on('select(city)', function(data){
+            var index = data.elem.dataset.id;
+            var value = data.value;
+            viewObj.tbData[index].city = value;
+        });
+    }
+    //保存项目来源
+    function saveXmly(){
+        form.on('select(xmly_cont)', function(data){
+            var index = data.elem.dataset.id;
+            var value = data.value;
+            viewObj.tbData[index].xmly = value;
+        });
+    }
+    //保持子项名称
+    function saveZxmc(){
+        $('.subitem_name_cont').each(function (index,v) {
+            $(this).change(function(){
+                var id = $(this)[0].dataset.id
+                viewObj.tbData[id].zxmc = $(this)[0].value;
+            })
+        }); 
+    }
+    //保存子项编号
+    function saveZxbh(){
+        $('.subitem_num_cont').each(function (index,v) {
+            $(this).change(function(){
+                var id = $(this)[0].dataset.id
+                viewObj.tbData[id].zxbh = $(this)[0].value;
+            })
+        }); 
+    }
+    //保存项目名称
+    function saveXmmc(){
+        $('.project_name_cont').each(function (index,v) {
+            var id = $(this)[0].dataset.id;
+            $(this).change(function(){         
+                viewObj.tbData[id].xmmc = $(this)[0].value;
+            })
+        }); 
+    }
+    //保存项目编号
+    function saveXmbh(){
+        $('.project_num_cont').each(function (index,v) {
+            var id = $(this)[0].dataset.id;
+            $(this).change(function(){
+                // console.log(v)
+                // console.log($(this)[0].dataset.id)
+                // console.log(viewObj.tbData)
+                var tbtr = $('.layui-table');
+                console.log(tbtr);
+                viewObj.tbData[id].xmbh = $(this)[0].value;
+            })
+        }); 
+    }
     //商务总监弹出选择框
     function buss_people(index){
         var tableSelect = layui.tableSelect;
@@ -564,7 +596,8 @@ layui.config({
             },
             done: function (elem, data) {
                 elem[index].value = data.data[0].name;
-                
+                //保存商务总监
+                viewObj.tbData[index].swzj =  data.data[0].name;
             }
         })
     }
@@ -588,6 +621,7 @@ layui.config({
             },
             done: function (elem, data) {
                 elem[index].value = data.data[0].name;
+                viewObj.tbData[index].sjzj =  data.data[0].name;
             }
         })
     }
@@ -611,6 +645,7 @@ layui.config({
             },
             done: function (elem, data) {
                 elem[index].value = data.data[0].name;
+                viewObj.tbData[index].xmfzr =  data.data[0].name;
             }
         })
     }
@@ -635,6 +670,7 @@ layui.config({
             },
             done: function (elem, data) {
                 elem[index].value = data.data[0].name;
+                viewObj.tbData[index].ybwhr =  data.data[0].name;
             }
         })
     }
@@ -759,17 +795,6 @@ layui.config({
             }
         })
     }
-    // function getSelectValue() {   //获取省市县/区在area.js配置的地区编码
-    //     var province = document.getElementById("province").value;
-    //     var city = document.getElementById("city").value;
-    //     var area = document.getElementById("area").value;
-
-
-    //     alert(province.split('_', 1));
-    //     alert(city.split('_', 1));
-    //     alert(area);
-    // }
-
     //加载项目来源
     function loadXmly(){
         var xmly = $('.project_source_cont');
@@ -784,7 +809,7 @@ layui.config({
             success: function(data) {
                 var data = JSON.parse(data).data;
                 for(var a in data){
-                    xmlyHtml += "<option value="+data[a].id+">"+data[a].value+"</option>";
+                    xmlyHtml += "<option value="+data[a].value+">"+data[a].value+"</option>";
                 }
                 xmly.append(xmlyHtml);
                 form.render('select','xmly');
@@ -813,6 +838,9 @@ layui.config({
             var count = d[1];
             var index = d[2];
             if (count > 0) {
+                console.log(data)
+                var id = data.elem.dataset.id;
+                viewObj.tbData[id].province = areaData[index].provinceName;
                 loadCity(areaData[index].mallCityList,currentLine);
             } else {
                 // $('.city').parent().hide();
@@ -823,7 +851,7 @@ layui.config({
     function loadCity(citys,currentLine) {
         var cityHtml = '';
         for (var i = 0; i < citys.length; i++) {
-            cityHtml += '<option value="' + citys[i].cityCode + '_' + citys[i].mallAreaList.length + '_' + i +'">' + citys[i].cityName + '</option>';
+            cityHtml += '<option value="' + citys[i].cityName +'">' + citys[i].cityName + '</option>';
         }
         // $('.city').innerHTML = cityHtml;
         console.log($('.city'))
@@ -846,7 +874,7 @@ layui.config({
             success: function(data) {
                 var data = JSON.parse(data).data;
                 for(var a in data){
-                    xmdjHtml += "<option value="+data[a].id+">"+data[a].value+"</option>";
+                    xmdjHtml += "<option value="+data[a].value+">"+data[a].value+"</option>";
                 }
                 xmdj.append(xmdjHtml);
                 form.render('select','xmdj');

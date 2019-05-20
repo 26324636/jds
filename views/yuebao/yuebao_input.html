@@ -64,25 +64,30 @@
             </script>
             <!-- 商务总监弹出选择框模板 -->
             <script type="text/html" id="buss_people">
-              <input type="text" style="width:110px" class="buss_people_cont">
+              <input type="text" style="width:110px" class="buss_people_cont" data-id="{{d.id}}"
+              value="{{d.swzj}}">
             </script>
             <!-- 设计总监弹出选择模板 -->
             <script type="text/html" id="design_people">
-              <input type="text" autocomplete="off" style="width:110px" class="design_people_cont">
+              <input type="text" style="width:110px" class="design_people_cont" data-id="{{d.id}}"
+              value="{{d.sjzj}}">
             </script>
             <!-- 项目负责人弹出选择模板 -->
             <script type="text/html" id="project_leader">
-              <input type="text" autocomplete="off" style="width:110px" class="project_leader_cont">
+              <input type="text" style="width:110px" class="project_leader_cont" data-id="{{d.id}}"
+              value="{{d.xmfzr}}">
             </script>
             <!-- 月报维护人弹出选择模板 -->
             <script type="text/html" id="yuebao_defend">
-              <input type="text" autocomplete="off" style="width:110px" class="yuebao_defend_cont">
+              <input type="text" style="width:110px" class="yuebao_defend_cont" data-id="{{d.id}}"
+              value="{{d.ybwhr}}">
             </script>
             <!-- 项目来源模板 -->
             <script type="text/html" id="project_source">
-              <div class="layui-form" lay-filter="xmly">
-                <select class="layui-form project_source_cont" name="xmly">
-                  <option value="0"> </option>
+              <div class="layui-form" lay-filter="xmly" >
+                <select class="layui-form project_source_cont" lay-filter="xmly_cont" name="xmly" data-id="{{d.id}}"
+                > 
+                  <option value="{{d.xmly}}">{{d.xmly}}</option>
                 </select>
               </div>
             </script>
@@ -90,23 +95,23 @@
             <script type="text/html" id="provinceTpl">
               <div class="layui-form ">
                 <!-- <form> -->
-                <select name="province" class="province" lay-filter="province">
-                  <option value=""> </option>
+                <select name="province" class="province" lay-filter="province" data-id="{{d.id}}">
+                  <option value="{{d.province}}">{{d.province}}</option>
                 </select>
                 <!-- </form> -->
               </div>
             </script>
             <!-- 市模板 -->
             <script type="text/html" id="cityTpl">
-              <select class="city">
-                <option value="0"> </option>
+              <select class="city" lay-filter="city" data-id="{{d.id}}">
+                <option  value="{{d.city}}">{{d.city}}</option>
               </select>
             </script>
             <!-- 项目等级模板 -->
             <script type="text/html" id="xmdj">
-              <div class="layui-form" lay-filter="xmdj">
-                <select class="xmdj_cont">
-                  <option value="0"> </option>
+              <div class="layui-form" lay-filter="xmdj" >
+                <select class="xmdj_cont" lay-filter="xmdj_cont" data-id="{{d.id}}">
+                  <option value="{{d.xmdj}}">{{d.xmdj}}</option>
                 </select>
               </div>
             </script>
