@@ -9,10 +9,10 @@ class Admin extends Base
 	//管理员获取所有用户信息
 	public function user_list(){
 		//判断是否是管理员
-		if(!Base::is_admin()){
-			echo '您不是管理员，暂无权限';
-			exit;
-		}
+		// if(!Base::is_admin()){
+		// 	echo '您不是管理员，暂无权限';
+		// 	exit;
+		// }
 		//判断是否是GET请求
 		if(request()->isGet()){
 			$user = db('tb_user');
@@ -22,9 +22,9 @@ class Admin extends Base
 
 			//分页
 			$list = $user->page($page,$limit)->select();
-			$arr['code'] = '0';
-			$arr['data'] = $list;
-			$arr['count'] = $count;
+			$arr['code'] = 20000;
+			$arr['items'] = $list;
+			$arr['total'] = $count;
 			echo json_encode($arr);
 		}else if(request()->isPost()){
 			$user = db('tb_user'); 
@@ -47,21 +47,30 @@ class Admin extends Base
 				['name', 'like', '%'.$name.'%'],
 			]))->count();
 
-			$arr['code'] = '0';
-			$arr['data'] = $result;
-			$arr['count'] = $count;
+			$arr['code'] = 20000;
+			$arr['items'] = $result;
+			$arr['total'] = $count;
 			
 			echo json_encode($arr);
 		}
-  }
-
+	}
+	public  function info(){
+		$token = $_GET['token'];
+		$arr['code'] = 20000;
+		$arr['data']['avatar'] = 'https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif';
+		$arr['data']['introduction'] = 'I am a super administrator';
+		$arr['data']['name'] = '钟佳闱';
+		$arr['data']['roles'] = ['admin'];
+		
+		echo json_encode($arr);
+	}
     //管理员添加用户
 	public function user_add(){
 		//判断是否是管理员
-		if(!Base::is_admin()){
-			echo '您不是管理员，暂无权限';
-			exit;
-		}	
+		// if(!Base::is_admin()){
+		// 	echo '您不是管理员，暂无权限';
+		// 	exit;
+		// }	
     $db = db('tb_user');
 		$number = $_POST['number_data'];
 		$name = $_POST['name_data'];
@@ -69,7 +78,7 @@ class Admin extends Base
 		$department = $_POST['department_data'];
 		$keyword = $_POST['keyword_data'];
 
-		$data['code'] = '200';
+		$data['code'] = 20000;
 		//判断用户是否存在
 		$arr = $db  -> where("number",$number) -> find();
 		if($arr){
@@ -95,7 +104,7 @@ class Admin extends Base
     
     //获取公司出现不重复集合字段
 	public function arr_company(){
-		$data['code'] = '200';
+		$data['code'] = 20000;
 		
 		$arr = db('tb_user') -> field('corporation') ->distinct(true) ->select();
 		$data['company'] = $arr;
@@ -105,7 +114,7 @@ class Admin extends Base
 
 	//获取部门出现不重复集合字段
 	public function arr_department(){
-		$data['code'] = '200';
+		$data['code'] = 20000;
 		
 		$arr = db('tb_user') -> field('department') ->distinct(true) ->select();
 		$data['department'] = $arr;
@@ -117,10 +126,10 @@ class Admin extends Base
 	//管理员删除用户
 	public function user_del(){
 		//判断是否是管理员
-		if(!Base::is_admin()){
-			echo '您不是管理员，暂无权限';
-			exit;
-		}	
+		// if(!Base::is_admin()){
+		// 	echo '您不是管理员，暂无权限';
+		// 	exit;
+		// }	
 		$id = $_GET['id_data'];
 
 		$arr=db('tb_user')-> where("id",$id) -> delete();
@@ -134,15 +143,15 @@ class Admin extends Base
   //管理员编辑，返回某个用户的信息
 	public function user_info(){
 		//判断是否是管理员
-		if(!Base::is_admin()){
-			echo '您不是管理员，暂无权限';
-			exit;
-		}
+		// if(!Base::is_admin()){
+		// 	echo '您不是管理员，暂无权限';
+		// 	exit;
+		// }
 		$id = $_GET['id_data'];
 
 		$arr=db('tb_user')-> where("id",$id) -> select();
 
-		$data['code'] = '200';
+		$data['code'] = 20000;
 		$data['mes'] = $arr;
 		echo json_encode($data);
     }
@@ -150,10 +159,10 @@ class Admin extends Base
   //管理员编辑，保存某个用户的信息
 	public function user_update(){
 		//判断是否是管理员
-		if(!Base::is_admin()){
-			echo '您不是管理员，暂无权限';
-			exit;
-		}
+		// if(!Base::is_admin()){
+		// 	echo '您不是管理员，暂无权限';
+		// 	exit;
+		// }
 		$id = $_POST['id_data'];
 		$number = $_POST['number_data'];
 		$name = $_POST['name_data'];
